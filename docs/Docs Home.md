@@ -22,8 +22,8 @@ Follow along and build your SaaS product integrations
 
 [https://www.loom.com/share/4e842856c3244477a4dc677778333ada?sharedAppSource=personal_library](https://www.loom.com/share/4e842856c3244477a4dc677778333ada?sharedAppSource=personal_library)
 
-[How to make a Hubspot integration with StackGo](../GettingStarted-Hubspot.md)
+[Getting started with Hubspot](../docs/GettingStarted-Hubspot.md)
 
-[How to make a PipeDrive integration with StackGo](https://www.notion.so/How-to-make-a-PipeDrive-integration-with-StackGo-99cdcb2b69d64fd09aff0bfe61c419c3)
+[How to make a PipeDrive integration with StackGo]()
 
-[How to make a Shopify integration with StackGo](https://www.notion.so/How-to-make-a-Shopify-integration-with-StackGo-877606fbafc842a1a334ec4c34802df3)
+[How to make a Shopify integration with StackGo]()
