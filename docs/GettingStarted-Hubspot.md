@@ -6,11 +6,10 @@ You never have to store credentials, change your database or understand how even
 
 **Pre-requisites:** We assume that you have gone through the `[Getting Started](https://www.notion.so/Getting-Started-Guide-9188382ae1944f6ca7e293d7ad59ae38)` tutorials and have a StackGo account and the access credentials for API access
 
-## 1. Sign up for a developer account - `[https://developers.hubspot.com](https://developers.hubspot.com/get-started)`
+## 1. Sign up for a developer account - [https://developers.hubspot.com](https://developers.hubspot.com/get-started)
 
 ### Choose `An App` and continue
 
-![test](../assets/images/Untitled.png)
 ![../assets/hubspot_images/Untitled.png](../assets/hubspot_images/Untitled.png)
 
 ### Complete the sign up form
