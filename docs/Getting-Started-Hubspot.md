@@ -1,10 +1,12 @@
+# Getting Started - Hubspot
+
 **Aim:** To have a StackGo powered capability to authenticate with Hubspot and then being able to make proxy requests via StackGo to query their data. 
 
 You never have to store credentials, change your database or understand how even the underlying auth system behaves!
 
 **Pre-requisites:** We assume that you have gone through the `[Getting Started](https://www.notion.so/Getting-Started-Guide-9188382ae1944f6ca7e293d7ad59ae38)` tutorials and have a StackGo account and the access credentials for API access
 
-## 1. Sign up for a developer account - `[https://developers.hubspot.com](https://developers.hubspot.com/get-started)`
+## 1. Sign up for a developer account - [https://developers.hubspot.com](https://developers.hubspot.com/get-started)
 
 ### Choose `An App` and continue
 
@@ -99,7 +101,7 @@ This install link is the action behind the `Connect to Hubspot` button or simila
 
 It will take you to the Hubspot page, if you were logged in it will take you to the `Authorization Page` where the user can authorise access to their Hubspot data. 
 
-## Use StackGo as a proxy
+## 5. Use StackGo as a proxy
 
 Now that the user has been registered via StackGo, we can use StackGo as a proxy which will pull the required information from the Platforms that have been integrated through it.
 
