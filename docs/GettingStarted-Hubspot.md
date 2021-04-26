@@ -10,33 +10,33 @@ You never have to store credentials, change your database or understand how even
 
 ### Choose `An App` and continue
 
-![../assets/images/hubspot_images/Untitled.png](../assets/images/hubspot_images/Untitled.png)
+![../assets/images/hubspot_images/Untitled.png](../assets/hubspot_images/Untitled.png)
 
 ### Complete the sign up form
 
-![../assets/images/hubspot_images/Untitled1.png](../assets/images/hubspot_images/Untitled1.png)
+![../assets/images/hubspot_images/Untitled1.png](../assets/hubspot_images/Untitled1.png)
 
 Note: you might have to verify your email by clicking on a email link
 
 ### Provide a phone number for `2FA` or skip
 
-![../assets/images/hubspot_images/Untitled2.png](../assets/images/hubspot_images/Untitled2.png)
+![../assets/images/hubspot_images/Untitled2.png](../assets/hubspot_images/Untitled2.png)
 
 ### Fill in some company details
 
-![../assets/images/hubspot_images/Untitled3.png](../assets/images/hubspot_images/Untitled3.png)
+![../assets/images/hubspot_images/Untitled3.png](../assets/hubspot_images/Untitled3.png)
 
 ### Select `Build something for many` on the welcome screen
 
-![../assets/images/hubspot_images/Untitled4.png](../assets/images/hubspot_images/Untitled4.png)
+![../assets/images/hubspot_images/Untitled4.png](../assets/hubspot_images/Untitled4.png)
 
 ### Go to Basic info > Auth to see the App Credentials
 
 Hubspot by default creates an app called `MyHubspotApp` and we can use that for this example.
 
-![../assets/images/hubspot_images/Untitled5.png](../assets/images/hubspot_images/Untitled5.png)
+![../assets/images/hubspot_images/Untitled5.png](../assets/hubspot_images/Untitled5.png)
 
-![../assets/images/hubspot_images/Untitled6.png](../assets/images/hubspot_images/Untitled6.png)
+![../assets/images/hubspot_images/Untitled6.png](../assets/hubspot_images/Untitled6.png)
 
 Select a few scopes, if you are unsure and want to follow along select `Contacts` and `Forms`
 
@@ -46,7 +46,7 @@ Congratulations, you now have generated API credentials, move on to the next sec
 
 ### Open StackGo (`app.stackgo.io/select-marketplace`) (assuming you are logged in)
 
-![../assets/images/hubspot_images/Untitled7.png](../assets/images/hubspot_images/Untitled7.png)
+![../assets/images/hubspot_images/Untitled7.png](../assets/hubspot_images/Untitled7.png)
 
 ### Pick a short nickname for your integration - feel free to match the name on the hubspot platform or `hbdev` also works well.
 
@@ -60,7 +60,7 @@ Select the same scopes as done on the Hubspot - or `contacts` and `forms` if you
 
 This will allow StackGo to execute the OAuth dance on your behalf
 
-![../assets/images/hubspot_images/Untitled8.png](../assets/images/hubspot_images/Untitled8.png)
+![../assets/images/hubspot_images/Untitled8.png](../assets/hubspot_images/Untitled8.png)
 
 Hit save and you are set!
 
@@ -97,7 +97,7 @@ The response from that API will be of the shape
 
 This install link is the action behind the `Connect to Hubspot` button or similar. You can simulate a user clicking on that button by opening the url in a browser window. 
 
-![../assets/images/hubspot_images/Untitled9.png](../assets/images/hubspot_images/Untitled9.png)
+![../assets/images/hubspot_images/Untitled9.png](../assets/hubspot_images/Untitled9.png)
 
 It will take you to the Hubspot page, if you were logged in it will take you to the `Authorization Page` where the user can authorise access to their Hubspot data. 
 
@@ -111,4 +111,4 @@ StackGo attaches the appropriate tokens and attempts to query the platform on yo
 
 To execute a `POST` request you can pass through another option for the `body` that has the data to be associated with the request
 
-![../assets/images/hubspot_images/Untitled10.png](../assets/images/hubspot_images/Untitled10.png)
+![../assets/images/hubspot_images/Untitled10.png](../assets/hubspot_images/Untitled10.png)
