@@ -3,8 +3,13 @@
   "info": {
     "description": "StackGo API",
     "title": "All",
-    "contact": {},
-    "version": "1.0"
+    "contact": {
+      "name": "StackGo",
+      "email": "team@stackgo.io",
+      "url": "https://stackgo.io/contact-us/"
+    },
+    "version": "1.0",
+    "termsOfService": "https://stackgo.io/tos"
   },
   "servers": [
     {
@@ -21,7 +26,7 @@
     }
   ],
   "paths": {
-    "/atlassian/auth/atl": {
+    "/atlassian/auth/{appSlug}": {
       "get": {
         "description": "atlassian api",
         "tags": [
@@ -33,13 +38,19 @@
           {
             "name": "userForeignIdentifier",
             "in": "query",
-            "required": true,
             "style": "form",
             "explode": true,
             "schema": {
               "type": "string",
               "example": "m3@m.com"
-            }
+            },
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header"
           }
         ],
         "responses": {
@@ -54,8 +65,24 @@
             "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
             "variables": {}
           }
+        ],
+        "security": [
+          {
+            "httpBearer": []
+          }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "appSlug",
+          "in": "path",
+          "required": true,
+          "description": "SaaS platform identifier from StackGo"
+        }
+      ]
     },
     "/raw/atl_dev": {
       "post": {
@@ -115,7 +142,7 @@
       "get": {
         "description": "hubspot api",
         "tags": [
-           "Hubspot"
+          "Hubspot"
         ],
         "summary": "Hubspot Get Install Link",
         "operationId": "HubspotGetInstallLink",
@@ -418,6 +445,15 @@
               "type": "string",
               "example": "pipe@sg.com"
             }
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "token heaer",
+            "required": true
           }
         ],
         "responses": {
@@ -431,6 +467,11 @@
           {
             "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
             "variables": {}
+          }
+        ],
+        "security": [
+          {
+            "httpBearer": []
           }
         ]
       }
@@ -1866,14 +1907,19 @@
     },
     "securitySchemes": {
       "httpBearer": {
-        "type": "http",
-        "scheme": "bearer"
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://stackgo.au.auth0.com/oauth/token",
+            "scopes": {}
+          }
+        }
       }
     }
   },
   "security": [
     {
-      "httpBearer": []
+      "Authorization": []
     }
   ],
   "tags": [
@@ -1892,10 +1938,12 @@
     {
       "name": "Xero",
       "description": "Xero"
-    },{
+    },
+    {
       "name": "Shopify",
       "description": "Shopify"
-    },{
+    },
+    {
       "name": "StackGo",
       "description": "StackGo"
     }
