@@ -1,0 +1,1903 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "StackGo API",
+    "title": "All",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+      "variables": {}
+    },
+    {
+      "url": "https://test-store-pp-sg.myshopify.com/admin/api/2021-01",
+      "variables": {}
+    },
+    {
+      "url": "https://api.xero.com/api.xro/2.0",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/atlassian/auth/atl": {
+      "get": {
+        "description": "atlassian api",
+        "tags": [
+          "Atlassian"
+        ],
+        "summary": "Atlassian Get Install Link",
+        "operationId": "AtlassianGetInstallLink",
+        "parameters": [
+          {
+            "name": "userForeignIdentifier",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "m3@m.com"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/raw/atl_dev": {
+      "post": {
+        "description": "atlassian api",
+        "tags": [
+          "Atlassian"
+        ],
+        "summary": "Atlassian proxy calls Copy",
+        "operationId": "AtlassianproxycallsCopy",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "method",
+                  "url",
+                  "userForeignIdentifier"
+                ],
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "example": "get"
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://stackgo.atlassian.net/wiki/rest/api/content/163843?expand=body.storage"
+                  },
+                  "userForeignIdentifier": {
+                    "type": "string",
+                    "example": "stackgo-prod"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/hubspot/auth/hbdev": {
+      "get": {
+        "description": "hubspot api",
+        "tags": [
+           "Hubspot"
+        ],
+        "summary": "Hubspot Get Install Link",
+        "operationId": "HubspotGetInstallLink",
+        "parameters": [
+          {
+            "name": "userForeignIdentifier",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "test@test.com"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/raw/hbdev": {
+      "post": {
+        "description": "hubspot proxy api",
+        "tags": [
+          "Hubspot"
+        ],
+        "summary": "Hubspot Proxy Calls Copy",
+        "operationId": "HubspotProxyCallsCopy",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "method",
+                  "url",
+                  "userForeignIdentifier"
+                ],
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "example": "get"
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://api.hubapi.com/forms/v2/forms"
+                  },
+                  "userForeignIdentifier": {
+                    "type": "string",
+                    "example": "test@test.com"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Security-Policy": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                  }
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "off"
+                  }
+                }
+              },
+              "Expect-CT": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=0"
+                  }
+                }
+              },
+              "X-Frame-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "SAMEORIGIN"
+                  }
+                }
+              },
+              "Strict-Transport-Security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "X-Download-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "noopen"
+                  }
+                }
+              },
+              "X-Content-Type-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "none"
+                  }
+                }
+              },
+              "Referrer-Policy": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "no-referrer"
+                  }
+                }
+              },
+              "X-XSS-Protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "0"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"1102-JHP6KVQscKrjLKFMT7XapINKRmU\""
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "Content-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "gzip"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 17 Apr 2021 01:20:12 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "Transfer-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "chunked"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/HubspotProxyCalls-GetForms"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/pipedrive/auth/pipe": {
+      "get": {
+        "description": "pipedrive api",
+        "tags": [
+          "Pipedrive"
+        ],
+        "summary": "Pipedrive Get Install Link",
+        "operationId": "PipedriveGetInstallLink",
+        "parameters": [
+          {
+            "name": "userForeignIdentifier",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "pipe@sg.com"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/raw/pipe": {
+      "post": {
+        "description": "pipedrive api",
+        "tags": [
+          "Pipedrive"
+        ],
+        "summary": "Pipedrive proxy calls",
+        "operationId": "Pipedriveproxycalls",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "method",
+                  "url",
+                  "userForeignIdentifier"
+                ],
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "example": "get"
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://api.pipedrive.com/v1/persons?start=0"
+                  },
+                  "userForeignIdentifier": {
+                    "type": "string",
+                    "example": "pipe@sg.com"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/shopify/auth/test-store-pp-sg": {
+      "get": {
+        "description": "shopify api",
+        "tags": [
+          "Shopify"
+        ],
+        "summary": "Shopify Get Install Link",
+        "operationId": "ShopifyGetInstallLink",
+        "parameters": [
+          {
+            "name": "userForeignIdentifier",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "test-store-pp-sg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/shopify/test-store-pp-sg": {
+      "post": {
+        "description": "Shopify api",
+        "tags": [
+          "Shopify"
+        ],
+        "summary": "Shopify proxy calls",
+        "operationId": "Shopifyproxycalls",
+        "parameters": [
+          {
+            "name": "x-shopify-access-token",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "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"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "method",
+                  "url",
+                  "userForeignIdentifier",
+                  "body"
+                ],
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "example": "post"
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://test-store-pp-sg.myshopify.com/admin/api/2021-01/graphql.json"
+                  },
+                  "userForeignIdentifier": {
+                    "type": "string",
+                    "example": "test-store-pp-sg"
+                  },
+                  "body": {
+                    "$ref": "#/components/schemas/body"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/graphql.json": {
+      "post": {
+        "description": "Shopify api",
+        "tags": [
+          "Shopify"
+        ],
+        "summary": "Straight to shopify",
+        "operationId": "Straighttoshopify",
+        "parameters": [
+          {
+            "name": "x-shopify-access-token",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "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"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "servers": [
+          {
+            "url": "https://test-store-pp-sg.myshopify.com/admin/api/2021-01",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/": {
+      "post": {
+        "description": "StackGo api",
+        "tags": [
+          "StackGo"
+        ],
+        "summary": "Get Prod Tokens",
+        "operationId": "GetProdTokens",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "client_id",
+                  "client_secret",
+                  "audience",
+                  "grant_type"
+                ],
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "example": "{{client_id_prod}}"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "example": "{{client_secret_prod}}"
+                  },
+                  "audience": {
+                    "type": "string",
+                    "example": "{{audience_prod}}"
+                  },
+                  "grant_type": {
+                    "type": "string",
+                    "example": "client_credentials"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/xero/auth/xe": {
+      "get": {
+        "description": "xero api",
+        "tags": [
+          "Xero"
+        ],
+        "summary": "Xero Get Install Link",
+        "operationId": "XeroGetInstallLink",
+        "parameters": [
+          {
+            "name": "userForeignIdentifier",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "xero-prod"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/raw/xe": {
+      "post": {
+        "description": "xero api",
+        "tags": [
+          "Xero"
+        ],
+        "summary": "Xero proxy - get connections",
+        "operationId": "Xeroproxy-getconnections",
+        "parameters": [
+          {
+            "name": "x-shopify-access-token",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "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"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "method",
+                  "url",
+                  "userForeignIdentifier"
+                ],
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "example": "get"
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://api.xero.com/connections"
+                  },
+                  "userForeignIdentifier": {
+                    "type": "string",
+                    "example": "xero-prod"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/Contacts": {
+      "get": {
+        "description": "xero api",
+        "tags": [
+          "Xero"
+        ],
+        "summary": "https://api.xero.com/api.xro/2.0/Contacts",
+        "operationId": "https://api.xero.com/api.xro/2.0/Contacts",
+        "parameters": [
+          {
+            "name": "xero-tenant-id",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "d16895be-193c-4d9e-be51-9652434268ca"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api.xero.com/api.xro/2.0",
+            "variables": {}
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HubspotProxyCalls-GetForms": {
+        "title": "HubspotProxyCalls-GetForms",
+        "required": [
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Datum"
+            }
+          }
+        },
+        "example": {
+          "data": [
+            {
+              "portalId": 8511822,
+              "guid": "f353e406-254c-4ae1-bca7-33968d1b4722",
+              "name": "New registration form (January 28, 2021 11:05:02 AM) ",
+              "action": "",
+              "method": "POST",
+              "cssClass": "hs-form stacked",
+              "redirect": "",
+              "submitText": "Submit",
+              "followUpId": "",
+              "notifyRecipients": "11766037",
+              "leadNurturingCampaignId": "",
+              "formFieldGroups": [
+                {
+                  "fields": [
+                    {
+                      "name": "email",
+                      "label": "Email",
+                      "type": "string",
+                      "fieldType": "text",
+                      "description": "",
+                      "groupName": "contactinformation",
+                      "displayOrder": -1,
+                      "required": true,
+                      "selectedOptions": [],
+                      "options": [],
+                      "validation": {
+                        "name": "",
+                        "message": "",
+                        "data": "",
+                        "useDefaultBlockList": false,
+                        "blockedEmailAddresses": []
+                      },
+                      "enabled": true,
+                      "hidden": false,
+                      "defaultValue": "",
+                      "isSmartField": false,
+                      "unselectedLabel": "",
+                      "placeholder": "",
+                      "dependentFieldFilters": [],
+                      "labelHidden": false,
+                      "propertyObjectType": "CONTACT",
+                      "metaData": [],
+                      "objectTypeId": "0-1"
+                    }
+                  ],
+                  "default": true,
+                  "isSmartGroup": false,
+                  "richText": {
+                    "content": "",
+                    "type": "TEXT"
+                  },
+                  "isPageBreak": false
+                },
+                {
+                  "fields": [
+                    {
+                      "name": "firstname",
+                      "label": "First name",
+                      "type": "string",
+                      "fieldType": "text",
+                      "description": "",
+                      "groupName": "contactinformation",
+                      "displayOrder": -1,
+                      "required": false,
+                      "selectedOptions": [],
+                      "options": [],
+                      "validation": {
+                        "name": "",
+                        "message": "",
+                        "data": "",
+                        "useDefaultBlockList": false,
+                        "blockedEmailAddresses": []
+                      },
+                      "enabled": true,
+                      "hidden": false,
+                      "defaultValue": "",
+                      "isSmartField": false,
+                      "unselectedLabel": "",
+                      "placeholder": "",
+                      "dependentFieldFilters": [],
+                      "labelHidden": false,
+                      "propertyObjectType": "CONTACT",
+                      "metaData": [],
+                      "objectTypeId": "0-1"
+                    }
+                  ],
+                  "default": true,
+                  "isSmartGroup": false,
+                  "richText": {
+                    "content": "",
+                    "type": "TEXT"
+                  },
+                  "isPageBreak": false
+                },
+                {
+                  "fields": [
+                    {
+                      "name": "lastname",
+                      "label": "Last name",
+                      "type": "string",
+                      "fieldType": "text",
+                      "description": "",
+                      "groupName": "contactinformation",
+                      "displayOrder": -1,
+                      "required": false,
+                      "selectedOptions": [],
+                      "options": [],
+                      "validation": {
+                        "name": "",
+                        "message": "",
+                        "data": "",
+                        "useDefaultBlockList": false,
+                        "blockedEmailAddresses": []
+                      },
+                      "enabled": true,
+                      "hidden": false,
+                      "defaultValue": "",
+                      "isSmartField": false,
+                      "unselectedLabel": "",
+                      "placeholder": "",
+                      "dependentFieldFilters": [],
+                      "labelHidden": false,
+                      "propertyObjectType": "CONTACT",
+                      "metaData": [],
+                      "objectTypeId": "0-1"
+                    }
+                  ],
+                  "default": true,
+                  "isSmartGroup": false,
+                  "richText": {
+                    "content": "",
+                    "type": "TEXT"
+                  },
+                  "isPageBreak": false
+                },
+                {
+                  "fields": [
+                    {
+                      "name": "phone",
+                      "label": "Phone number",
+                      "type": "string",
+                      "fieldType": "text",
+                      "description": "",
+                      "groupName": "contactinformation",
+                      "displayOrder": -1,
+                      "required": false,
+                      "selectedOptions": [],
+                      "options": [],
+                      "validation": {
+                        "name": "",
+                        "message": "",
+                        "data": "7:20:true",
+                        "useDefaultBlockList": false,
+                        "blockedEmailAddresses": []
+                      },
+                      "enabled": true,
+                      "hidden": false,
+                      "defaultValue": "",
+                      "isSmartField": false,
+                      "unselectedLabel": "",
+                      "placeholder": "",
+                      "dependentFieldFilters": [],
+                      "labelHidden": false,
+                      "propertyObjectType": "CONTACT",
+                      "metaData": [],
+                      "objectTypeId": "0-1"
+                    }
+                  ],
+                  "default": true,
+                  "isSmartGroup": false,
+                  "richText": {
+                    "content": "",
+                    "type": "TEXT"
+                  },
+                  "isPageBreak": false
+                }
+              ],
+              "createdAt": 1611792380136,
+              "updatedAt": 1611792384849,
+              "performableHtml": "",
+              "migratedFrom": "",
+              "ignoreCurrentValues": false,
+              "metaData": [
+                {
+                  "name": "lang",
+                  "value": "en"
+                },
+                {
+                  "name": "embedType",
+                  "value": "REGULAR"
+                }
+              ],
+              "deletable": true,
+              "inlineMessage": "Thanks for submitting the form.",
+              "tmsId": "",
+              "captchaEnabled": false,
+              "campaignGuid": "",
+              "cloneable": true,
+              "editable": true,
+              "formType": "HUBSPOT",
+              "deletedAt": 0,
+              "themeName": "canvas",
+              "parentId": 0,
+              "style": "{\"fontFamily\":\"arial, helvetica, sans-serif\",\"backgroundWidth\":\"100%\",\"labelTextColor\":\"#33475b\",\"labelTextSize\":\"13px\",\"helpTextColor\":\"#7C98B6\",\"helpTextSize\":\"11px\",\"legalConsentTextColor\":\"#33475b\",\"legalConsentTextSize\":\"14px\",\"submitColor\":\"#ff7a59\",\"submitAlignment\":\"left\",\"submitFontColor\":\"#ffffff\",\"submitSize\":\"12px\",\"paginationProgressColor\":\"#598aff\",\"paginationProgressTextColor\":\"#33475b\",\"paginationProgressShow\":true,\"paginationProgressTransition\":\"fade\",\"paginationProgressTheme\":\"default\",\"paginationContentUseScroll\":false,\"paginationContentScrollHeight\":\"100%\"}",
+              "isPublished": true,
+              "publishAt": 0,
+              "unpublishAt": 0,
+              "publishedAt": 0,
+              "multivariateTest": {
+                "variants": [],
+                "startAtTimestamp": 0,
+                "endAtTimestamp": 0,
+                "winningVariantId": "",
+                "finished": false,
+                "controlId": ""
+              },
+              "kickbackEmailWorkflowId": 0,
+              "kickbackEmailsJson": "",
+              "customUid": "",
+              "createMarketableContact": true,
+              "editVersion": 0,
+              "thankYouMessageJson": "",
+              "themeColor": "",
+              "alwaysCreateNewCompany": true,
+              "internalUpdatedAt": 1611792384849,
+              "businessUnitId": 0
+            }
+          ]
+        }
+      },
+      "Datum": {
+        "title": "Datum",
+        "required": [
+          "portalId",
+          "guid",
+          "name",
+          "action",
+          "method",
+          "cssClass",
+          "redirect",
+          "submitText",
+          "followUpId",
+          "notifyRecipients",
+          "leadNurturingCampaignId",
+          "formFieldGroups",
+          "createdAt",
+          "updatedAt",
+          "performableHtml",
+          "migratedFrom",
+          "ignoreCurrentValues",
+          "metaData",
+          "deletable",
+          "inlineMessage",
+          "tmsId",
+          "captchaEnabled",
+          "campaignGuid",
+          "cloneable",
+          "editable",
+          "formType",
+          "deletedAt",
+          "themeName",
+          "parentId",
+          "style",
+          "isPublished",
+          "publishAt",
+          "unpublishAt",
+          "publishedAt",
+          "multivariateTest",
+          "kickbackEmailWorkflowId",
+          "kickbackEmailsJson",
+          "customUid",
+          "createMarketableContact",
+          "editVersion",
+          "thankYouMessageJson",
+          "themeColor",
+          "alwaysCreateNewCompany",
+          "internalUpdatedAt",
+          "businessUnitId"
+        ],
+        "type": "object",
+        "properties": {
+          "portalId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "guid": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "cssClass": {
+            "type": "string"
+          },
+          "redirect": {
+            "type": "string"
+          },
+          "submitText": {
+            "type": "string"
+          },
+          "followUpId": {
+            "type": "string"
+          },
+          "notifyRecipients": {
+            "type": "string"
+          },
+          "leadNurturingCampaignId": {
+            "type": "string"
+          },
+          "formFieldGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormFieldGroup"
+            }
+          },
+          "createdAt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "updatedAt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "performableHtml": {
+            "type": "string"
+          },
+          "migratedFrom": {
+            "type": "string"
+          },
+          "ignoreCurrentValues": {
+            "type": "boolean"
+          },
+          "metaData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetaDatum"
+            }
+          },
+          "deletable": {
+            "type": "boolean"
+          },
+          "inlineMessage": {
+            "type": "string"
+          },
+          "tmsId": {
+            "type": "string"
+          },
+          "captchaEnabled": {
+            "type": "boolean"
+          },
+          "campaignGuid": {
+            "type": "string"
+          },
+          "cloneable": {
+            "type": "boolean"
+          },
+          "editable": {
+            "type": "boolean"
+          },
+          "formType": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "themeName": {
+            "type": "string"
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "style": {
+            "type": "string"
+          },
+          "isPublished": {
+            "type": "boolean"
+          },
+          "publishAt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unpublishAt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publishedAt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "multivariateTest": {
+            "$ref": "#/components/schemas/MultivariateTest"
+          },
+          "kickbackEmailWorkflowId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kickbackEmailsJson": {
+            "type": "string"
+          },
+          "customUid": {
+            "type": "string"
+          },
+          "createMarketableContact": {
+            "type": "boolean"
+          },
+          "editVersion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "thankYouMessageJson": {
+            "type": "string"
+          },
+          "themeColor": {
+            "type": "string"
+          },
+          "alwaysCreateNewCompany": {
+            "type": "boolean"
+          },
+          "internalUpdatedAt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "businessUnitId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "portalId": 8511822,
+          "guid": "f353e406-254c-4ae1-bca7-33968d1b4722",
+          "name": "New registration form (January 28, 2021 11:05:02 AM) ",
+          "action": "",
+          "method": "POST",
+          "cssClass": "hs-form stacked",
+          "redirect": "",
+          "submitText": "Submit",
+          "followUpId": "",
+          "notifyRecipients": "11766037",
+          "leadNurturingCampaignId": "",
+          "formFieldGroups": [
+            {
+              "fields": [
+                {
+                  "name": "email",
+                  "label": "Email",
+                  "type": "string",
+                  "fieldType": "text",
+                  "description": "",
+                  "groupName": "contactinformation",
+                  "displayOrder": -1,
+                  "required": true,
+                  "selectedOptions": [],
+                  "options": [],
+                  "validation": {
+                    "name": "",
+                    "message": "",
+                    "data": "",
+                    "useDefaultBlockList": false,
+                    "blockedEmailAddresses": []
+                  },
+                  "enabled": true,
+                  "hidden": false,
+                  "defaultValue": "",
+                  "isSmartField": false,
+                  "unselectedLabel": "",
+                  "placeholder": "",
+                  "dependentFieldFilters": [],
+                  "labelHidden": false,
+                  "propertyObjectType": "CONTACT",
+                  "metaData": [],
+                  "objectTypeId": "0-1"
+                }
+              ],
+              "default": true,
+              "isSmartGroup": false,
+              "richText": {
+                "content": "",
+                "type": "TEXT"
+              },
+              "isPageBreak": false
+            },
+            {
+              "fields": [
+                {
+                  "name": "firstname",
+                  "label": "First name",
+                  "type": "string",
+                  "fieldType": "text",
+                  "description": "",
+                  "groupName": "contactinformation",
+                  "displayOrder": -1,
+                  "required": false,
+                  "selectedOptions": [],
+                  "options": [],
+                  "validation": {
+                    "name": "",
+                    "message": "",
+                    "data": "",
+                    "useDefaultBlockList": false,
+                    "blockedEmailAddresses": []
+                  },
+                  "enabled": true,
+                  "hidden": false,
+                  "defaultValue": "",
+                  "isSmartField": false,
+                  "unselectedLabel": "",
+                  "placeholder": "",
+                  "dependentFieldFilters": [],
+                  "labelHidden": false,
+                  "propertyObjectType": "CONTACT",
+                  "metaData": [],
+                  "objectTypeId": "0-1"
+                }
+              ],
+              "default": true,
+              "isSmartGroup": false,
+              "richText": {
+                "content": "",
+                "type": "TEXT"
+              },
+              "isPageBreak": false
+            },
+            {
+              "fields": [
+                {
+                  "name": "lastname",
+                  "label": "Last name",
+                  "type": "string",
+                  "fieldType": "text",
+                  "description": "",
+                  "groupName": "contactinformation",
+                  "displayOrder": -1,
+                  "required": false,
+                  "selectedOptions": [],
+                  "options": [],
+                  "validation": {
+                    "name": "",
+                    "message": "",
+                    "data": "",
+                    "useDefaultBlockList": false,
+                    "blockedEmailAddresses": []
+                  },
+                  "enabled": true,
+                  "hidden": false,
+                  "defaultValue": "",
+                  "isSmartField": false,
+                  "unselectedLabel": "",
+                  "placeholder": "",
+                  "dependentFieldFilters": [],
+                  "labelHidden": false,
+                  "propertyObjectType": "CONTACT",
+                  "metaData": [],
+                  "objectTypeId": "0-1"
+                }
+              ],
+              "default": true,
+              "isSmartGroup": false,
+              "richText": {
+                "content": "",
+                "type": "TEXT"
+              },
+              "isPageBreak": false
+            },
+            {
+              "fields": [
+                {
+                  "name": "phone",
+                  "label": "Phone number",
+                  "type": "string",
+                  "fieldType": "text",
+                  "description": "",
+                  "groupName": "contactinformation",
+                  "displayOrder": -1,
+                  "required": false,
+                  "selectedOptions": [],
+                  "options": [],
+                  "validation": {
+                    "name": "",
+                    "message": "",
+                    "data": "7:20:true",
+                    "useDefaultBlockList": false,
+                    "blockedEmailAddresses": []
+                  },
+                  "enabled": true,
+                  "hidden": false,
+                  "defaultValue": "",
+                  "isSmartField": false,
+                  "unselectedLabel": "",
+                  "placeholder": "",
+                  "dependentFieldFilters": [],
+                  "labelHidden": false,
+                  "propertyObjectType": "CONTACT",
+                  "metaData": [],
+                  "objectTypeId": "0-1"
+                }
+              ],
+              "default": true,
+              "isSmartGroup": false,
+              "richText": {
+                "content": "",
+                "type": "TEXT"
+              },
+              "isPageBreak": false
+            }
+          ],
+          "createdAt": 1611792380136,
+          "updatedAt": 1611792384849,
+          "performableHtml": "",
+          "migratedFrom": "",
+          "ignoreCurrentValues": false,
+          "metaData": [
+            {
+              "name": "lang",
+              "value": "en"
+            },
+            {
+              "name": "embedType",
+              "value": "REGULAR"
+            }
+          ],
+          "deletable": true,
+          "inlineMessage": "Thanks for submitting the form.",
+          "tmsId": "",
+          "captchaEnabled": false,
+          "campaignGuid": "",
+          "cloneable": true,
+          "editable": true,
+          "formType": "HUBSPOT",
+          "deletedAt": 0,
+          "themeName": "canvas",
+          "parentId": 0,
+          "style": "{\"fontFamily\":\"arial, helvetica, sans-serif\",\"backgroundWidth\":\"100%\",\"labelTextColor\":\"#33475b\",\"labelTextSize\":\"13px\",\"helpTextColor\":\"#7C98B6\",\"helpTextSize\":\"11px\",\"legalConsentTextColor\":\"#33475b\",\"legalConsentTextSize\":\"14px\",\"submitColor\":\"#ff7a59\",\"submitAlignment\":\"left\",\"submitFontColor\":\"#ffffff\",\"submitSize\":\"12px\",\"paginationProgressColor\":\"#598aff\",\"paginationProgressTextColor\":\"#33475b\",\"paginationProgressShow\":true,\"paginationProgressTransition\":\"fade\",\"paginationProgressTheme\":\"default\",\"paginationContentUseScroll\":false,\"paginationContentScrollHeight\":\"100%\"}",
+          "isPublished": true,
+          "publishAt": 0,
+          "unpublishAt": 0,
+          "publishedAt": 0,
+          "multivariateTest": {
+            "variants": [],
+            "startAtTimestamp": 0,
+            "endAtTimestamp": 0,
+            "winningVariantId": "",
+            "finished": false,
+            "controlId": ""
+          },
+          "kickbackEmailWorkflowId": 0,
+          "kickbackEmailsJson": "",
+          "customUid": "",
+          "createMarketableContact": true,
+          "editVersion": 0,
+          "thankYouMessageJson": "",
+          "themeColor": "",
+          "alwaysCreateNewCompany": true,
+          "internalUpdatedAt": 1611792384849,
+          "businessUnitId": 0
+        }
+      },
+      "FormFieldGroup": {
+        "title": "FormFieldGroup",
+        "required": [
+          "fields",
+          "default",
+          "isSmartGroup",
+          "richText",
+          "isPageBreak"
+        ],
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          },
+          "default": {
+            "type": "boolean"
+          },
+          "isSmartGroup": {
+            "type": "boolean"
+          },
+          "richText": {
+            "$ref": "#/components/schemas/RichText"
+          },
+          "isPageBreak": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "fields": [
+            {
+              "name": "email",
+              "label": "Email",
+              "type": "string",
+              "fieldType": "text",
+              "description": "",
+              "groupName": "contactinformation",
+              "displayOrder": -1,
+              "required": true,
+              "selectedOptions": [],
+              "options": [],
+              "validation": {
+                "name": "",
+                "message": "",
+                "data": "",
+                "useDefaultBlockList": false,
+                "blockedEmailAddresses": []
+              },
+              "enabled": true,
+              "hidden": false,
+              "defaultValue": "",
+              "isSmartField": false,
+              "unselectedLabel": "",
+              "placeholder": "",
+              "dependentFieldFilters": [],
+              "labelHidden": false,
+              "propertyObjectType": "CONTACT",
+              "metaData": [],
+              "objectTypeId": "0-1"
+            }
+          ],
+          "default": true,
+          "isSmartGroup": false,
+          "richText": {
+            "content": "",
+            "type": "TEXT"
+          },
+          "isPageBreak": false
+        }
+      },
+      "Field": {
+        "title": "Field",
+        "required": [
+          "name",
+          "label",
+          "type",
+          "fieldType",
+          "description",
+          "groupName",
+          "displayOrder",
+          "required",
+          "selectedOptions",
+          "options",
+          "validation",
+          "enabled",
+          "hidden",
+          "defaultValue",
+          "isSmartField",
+          "unselectedLabel",
+          "placeholder",
+          "dependentFieldFilters",
+          "labelHidden",
+          "propertyObjectType",
+          "metaData",
+          "objectTypeId"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "fieldType": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "groupName": {
+            "type": "string"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "selectedOptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "validation": {
+            "$ref": "#/components/schemas/Validation"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "hidden": {
+            "type": "boolean"
+          },
+          "defaultValue": {
+            "type": "string"
+          },
+          "isSmartField": {
+            "type": "boolean"
+          },
+          "unselectedLabel": {
+            "type": "string"
+          },
+          "placeholder": {
+            "type": "string"
+          },
+          "dependentFieldFilters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "labelHidden": {
+            "type": "boolean"
+          },
+          "propertyObjectType": {
+            "type": "string"
+          },
+          "metaData": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "objectTypeId": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "email",
+          "label": "Email",
+          "type": "string",
+          "fieldType": "text",
+          "description": "",
+          "groupName": "contactinformation",
+          "displayOrder": -1,
+          "required": true,
+          "selectedOptions": [],
+          "options": [],
+          "validation": {
+            "name": "",
+            "message": "",
+            "data": "",
+            "useDefaultBlockList": false,
+            "blockedEmailAddresses": []
+          },
+          "enabled": true,
+          "hidden": false,
+          "defaultValue": "",
+          "isSmartField": false,
+          "unselectedLabel": "",
+          "placeholder": "",
+          "dependentFieldFilters": [],
+          "labelHidden": false,
+          "propertyObjectType": "CONTACT",
+          "metaData": [],
+          "objectTypeId": "0-1"
+        }
+      },
+      "Validation": {
+        "title": "Validation",
+        "required": [
+          "name",
+          "message",
+          "data",
+          "useDefaultBlockList",
+          "blockedEmailAddresses"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "useDefaultBlockList": {
+            "type": "boolean"
+          },
+          "blockedEmailAddresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "name": "",
+          "message": "",
+          "data": "",
+          "useDefaultBlockList": false,
+          "blockedEmailAddresses": []
+        }
+      },
+      "RichText": {
+        "title": "RichText",
+        "required": [
+          "content",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "content": "",
+          "type": "TEXT"
+        }
+      },
+      "MetaDatum": {
+        "title": "MetaDatum",
+        "required": [
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "lang",
+          "value": "en"
+        }
+      },
+      "MultivariateTest": {
+        "title": "MultivariateTest",
+        "required": [
+          "variants",
+          "startAtTimestamp",
+          "endAtTimestamp",
+          "winningVariantId",
+          "finished",
+          "controlId"
+        ],
+        "type": "object",
+        "properties": {
+          "variants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "startAtTimestamp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endAtTimestamp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "winningVariantId": {
+            "type": "string"
+          },
+          "finished": {
+            "type": "boolean"
+          },
+          "controlId": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "variants": [],
+          "startAtTimestamp": 0,
+          "endAtTimestamp": 0,
+          "winningVariantId": "",
+          "finished": false,
+          "controlId": ""
+        }
+      },
+      "body": {
+        "title": "body",
+        "required": [
+          "query",
+          "variables"
+        ],
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "variables": {
+            "type": "object"
+          }
+        },
+        "example": {
+          "query": "query Orders {\n  orders(first: 10, query: \"discount_code:37EB2CD2-5A0D-455D-B33C-6B3F659253AE\") {\n    edges {\n      node {\n        email\n        discountCode\n      }\n    }\n  }\n}",
+          "variables": {}
+        }
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Atlassian",
+      "description": "Atlassian"
+    },
+    {
+      "name": "Hubspot",
+      "description": "Hubspot"
+    },
+    {
+      "name": "Pipedrive",
+      "description": "Pipedrive"
+    },
+    {
+      "name": "Xero",
+      "description": "Xero"
+    },{
+      "name": "Shopify",
+      "description": "Shopify"
+    },{
+      "name": "StackGo",
+      "description": "StackGo"
+    }
+  ]
+}
