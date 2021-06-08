@@ -45,19 +45,47 @@
               "example": "m3@m.com"
             },
             "required": true
-          },
-          {
-            "name": "test",
-            "schema": {
-              "type": "string"
-            },
-            "in": "header"
           }
         ],
         "responses": {
           "200": {
             "description": "",
-            "headers": {}
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "userForeignIdentifier": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "UUID": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "userForeignIdentifier",
+                    "UUID"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "url": "https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=G1kmfeIJWMzIblHLPNHShefGNgau2P47&scope=read%3Ajira-user%20read%3Ajira-work%20read%3Aconfluence-content.all%20read%3Aconfluence-content.summary%20manage%3Ajira-webhook%20manage%3Ajira-project%20offline_access&redirect_uri=https%3A%2F%2Fapi-dot-stackgo-300922.ts.r.appspot.com%2Fatlassian%2Fatl_dev-965a9683-a2bf-420b-9551-dcd3a62bb7b8%2Fcallback&state=stackgo-prod&response_type=code&prompt=consent",
+                      "userForeignIdentifier": "stackgo-prod",
+                      "UUID": "965a9683-a2bf-420b-9551-dcd3a62bb7b8"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
           }
         },
         "deprecated": false,
