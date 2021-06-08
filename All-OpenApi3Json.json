@@ -47,6 +47,7 @@
             "required": true
           },
           {
+            "name": "test",
             "schema": {
               "type": "string"
             },
