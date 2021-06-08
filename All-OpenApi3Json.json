@@ -19,10 +19,6 @@
     {
       "url": "https://test-store-pp-sg.myshopify.com/admin/api/2021-01",
       "variables": {}
-    },
-    {
-      "url": "https://api.xero.com/api.xro/2.0",
-      "variables": {}
     }
   ],
   "paths": {
@@ -44,12 +40,30 @@
               "type": "string",
               "example": "m3@m.com"
             },
+            "required": true,
+            "description": "Unique reference to a \"user\" in your application context. Can be a email address, UUID, Tenancy ID or similar"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {Insert your StackGo token}",
             "required": true
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "redirect",
+            "description": "If true, it automatically redirects the caller to the SaaS platform. In this case Atlassian"
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "The response for contains a customised intallation link for the `userForeignIdentifier` that has been supplied. This API can be used in the `connected accounts` or the `integrations` page of your app inviting the users to authorise your application to access their tools.",
             "headers": {},
             "content": {
               "application/json": {
@@ -97,7 +111,7 @@
         ],
         "security": [
           {
-            "httpBearer": []
+            "StackGo Client Credentials": []
           }
         ]
       },
@@ -500,7 +514,7 @@
         ],
         "security": [
           {
-            "httpBearer": []
+            "StackGo Client Credentials": []
           }
         ]
       }
@@ -1935,7 +1949,7 @@
       }
     },
     "securitySchemes": {
-      "httpBearer": {
+      "StackGo Client Credentials": {
         "type": "oauth2",
         "flows": {
           "clientCredentials": {
