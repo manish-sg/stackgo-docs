@@ -405,7 +405,7 @@
         "tags": [
           "Hubspot"
         ],
-        "summary": "Hubspot Get Install Link",
+        "summary": "Hubspot Install Link",
         "operationId": "HubspotGetInstallLink",
         "parameters": [
           {
@@ -491,7 +491,8 @@
           },
           "name": "appSlug",
           "in": "path",
-          "required": true
+          "required": true,
+          "description": "Hubspot credentials identifier from StackGo"
         }
       ]
     },
