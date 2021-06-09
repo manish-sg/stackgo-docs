@@ -939,7 +939,7 @@
     "/oauth/token": {
       "servers": [
         {
-          "url": "test.com"
+          "url": "https://test.com"
         }
       ],
       "post": {
