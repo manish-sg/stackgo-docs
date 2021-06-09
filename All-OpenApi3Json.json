@@ -10859,7 +10859,7 @@
       },
       "parameters": []
     },
-    "/xero/auth/{aapSlug}": {
+    "/xero/auth/{appSlug}": {
       "get": {
         "description": "Use this endpoint to generate an `Authorisation Link` for a set of Xero credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier",
         "tags": [
@@ -10925,10 +10925,10 @@
           "schema": {
             "type": "string"
           },
-          "name": "aapSlug",
+          "name": "appSlug",
           "in": "path",
           "required": true,
-          "description": "Xero identifier from StackG"
+          "description": "Xero App Identifier"
         }
       ]
     },
