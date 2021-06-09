@@ -129,7 +129,7 @@
     },
     "/atlassian/proxy/{AtlassianAppSlug}": {
       "post": {
-        "description": "Use this endpoint for proxying calls to the Atlassian platform using credentials referenced by `appSlug` and against a user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developer.atlassian.com` can be used in this way. ",
+        "description": "Use this endpoint for proxying calls to the Atlassian platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developer.atlassian.com` can be used in this way. ",
         "tags": [
           "Atlassian"
         ],
