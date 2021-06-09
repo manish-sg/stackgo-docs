@@ -133,7 +133,7 @@
         "tags": [
           "Atlassian"
         ],
-        "summary": "Atlassian proxy calls Copy",
+        "summary": "Atlassian proxy calls",
         "operationId": "AtlassianproxycallsCopy",
         "parameters": [],
         "requestBody": {
@@ -174,7 +174,8 @@
                   "url",
                   "userForeignIdentifier"
                 ]
-              }
+              },
+              "examples": {}
             }
           },
           "required": false,
