@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "description": "StackGo API",
-    "title": "All",
+    "description": "The following is a reference of the StackGo API which describes the request and response patterns for being able to use StackGo as the nexus of all your OAuth based API credentials. Please feel free to contact the [team](team@stackgo.io) in case of any queries or clarifications ",
+    "title": "StackGo API overview",
     "contact": {
       "name": "StackGo",
       "email": "team@stackgo.io",
@@ -14,11 +14,12 @@
   "servers": [
     {
       "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
-      "variables": {}
+      "variables": {},
+      "description": "Base URL"
     },
     {
       "url": "https://stackgo.au.auth0.com/oauth/token",
-      "description": "SG"
+      "description": "Tokens Only"
     }
   ],
   "paths": {
@@ -11923,7 +11924,8 @@
             "tokenUrl": "https://stackgo.au.auth0.com/oauth/token",
             "scopes": {}
           }
-        }
+        },
+        "description": "See [here](https://docs.stackgo.io/docs/stackgo-docs/All-OpenApi3Json.json/paths/~1oauth~1token/post) on how to generate the StackGo token"
       }
     }
   },
