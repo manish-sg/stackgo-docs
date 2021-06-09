@@ -32,9 +32,7 @@ Ready to explore? Please get in [touch](link)
 
 ### Technical Architecture
 
-Diagram
-
-![](url)
+![../assets/sg_philosophy/StackGoasaService.jpg](../assets/sg_philosophy/StackGoasaService.jpg)
 
 
 ### Key Concepts
