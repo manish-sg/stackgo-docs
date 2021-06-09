@@ -881,9 +881,6 @@
     "/raw/{HubspotProxyCall}": {
       "post": {
         "description": "Use this endpoint for proxying calls to the Hubspot platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developers.hubspot.com/docs/api/overview` can be used in this way. ",
-        "tags": [
-          "Atlassian"
-        ],
         "summary": "Hubspot proxy calls",
         "operationId": "AtlassianproxycallsCopy",
         "parameters": [
@@ -1694,6 +1691,9 @@
           {
             "StackGo Client Credentials": []
           }
+        ],
+        "tags": [
+          "Hubspot"
         ]
       },
       "parameters": [
