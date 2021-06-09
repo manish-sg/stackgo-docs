@@ -401,7 +401,7 @@
     },
     "/hubspot/auth/{appSlug}": {
       "get": {
-        "description": "Use this endpoint to generate an `Authorisation Link` for a Hubspot credentials registered on StackGo referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Hubspot credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
         "tags": [
           "Hubspot"
         ],
