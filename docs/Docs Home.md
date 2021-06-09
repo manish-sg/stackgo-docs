@@ -1,31 +1,42 @@
-# StackGo Philosophy - A developer superpower
-
-Why use stackgo - understanding
-
-- Context - birth of SaaS platforms
-- Put Archi or soln diagram
-- Easy to scale
-- how to architect your app with SG
-- potential use cases
-    - for a test app of a client
-    - improving your app's automation
+# StackGo Philosophy
 
 
 SaaS platforms are more ubiquitous than ever. They’re growing in popularity in an increasingly congested and finely stratified SaaS market. Product integrations into SaaS platforms can be a channel for growth, improving customer retention, creating seamless customer journeys and a hotbed for innovation on your core offering. We have written a lot about the importance of SaaS integrations on our blog, [feel free to check out this post](https://stackgo.io/software-marketplaces-for-growth/).
 
+At StackGo we realise that devlopment time is a limiting factor in how many product integrations get built. Since each platform has its own data model, oAuth implementation and mode of operations. Therefore we are deeply commited to our vision of an ecosystem of developer tools that boost effiancy by a factor of 10 by reducing to allow for faster iterations and greater agilty. 
 
-Goal in both cases is to reduce developer effort, but in the case of customer product integrations the goal is to make a many:many integration that makes the end customers life much easier.
+We have also written extensivley about how to find your ideal use-case for building product integrations for product and technology leaders. Please see [this blog for more details](https://stackgo.io/data-integration-and-saas-marketplaces/) 
 
-- Product Composition integrations - Usually 1:many
-  - Payment processing
-  - Application Monitoring application
-  - Authentication provider
 
-- Customer Product integration
+### StackGo Suite
 
-StackGo realises that devlopment time is a critically limiting factor in how many product integrations get undertaken. Therefore we are deeply commited to our vision of an ecosystem of developer tools that boost effiancy by a factor of 10 by reducing boilerplate dependencies allowing for faster iterations and greater agilty.
+#### Managed Authentication 
 
-We have also written extensivley about how to find your ideal use-case for building product integrations for product and technology leaders. Please see [this blog for more details](https://stackgo.io/data-integration-and-saas-marketplaces/)
+All SaaS product integrations require authorization and authentication before any data can be transacted, this is where managed authentication comes in! 
+StackGo offers its managed authentication to allow developers to get started quickly with oAuth based platforms with a standardised approache that is state of the art and secure implementation. Hence developers can focus on building features for customers rather than being bogged in the minutiae of authentication. It also reduces the cost of experimentation and starting integrations with new platforms.  
+
+Interested in learning more? Please work through our tutorial for [a tutorial](linik)
+
+#### Unified APIs
+
+While helping customers with the their SaaS product integrations we worked with a large number of SaaS platforms that have offerings the same domain. 
+
+FaaS
+
+### Technical Architecture
+
+Diagram
+
+
+
+
+### Key Concepts
+
+
+
+### Tutorial 
+Follow along for a guided tour on how to use StackGo to make SaaS integrations easier. 
+
 
 From a technical implementation point of view there are a few concepts to introduce to make the most of the StackGo platform.
 
@@ -35,17 +46,7 @@ When you login to the StackGo platform you will see prompts asking you to select
 
 User Foreign Identifer `userForeignIdentifer`
 
+App Credentials Identifier `appSlug`
 
-# Getting Starting Tutorials
 
-[Sign up to with StackGo ](https://www.notion.so/Sign-up-to-with-StackGo-b3558e3bf2444214a03a6c1314abc778)
 
-[Requesting your StackGo Authentication Tokens](https://www.notion.so/Requesting-your-StackGo-Authentication-Tokens-89b1ab9f852a407ea267a54957f30ff7)
-
-# How to guides
-
-Follow along and build your SaaS product integrations
-
-[https://www.loom.com/share/4e842856c3244477a4dc677778333ada?sharedAppSource=personal_library](https://www.loom.com/share/4e842856c3244477a4dc677778333ada?sharedAppSource=personal_library)
-
-[Getting started with Hubspot](../docs/GettingStarted-Hubspot.md)
