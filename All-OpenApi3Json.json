@@ -187,12 +187,16 @@
                   "headers": {
                     "type": "string",
                     "description": "Optional. To pass custom headers"
+                  },
+                  "product": {
+                    "type": "string"
                   }
                 },
                 "required": [
                   "method",
                   "url",
-                  "userForeignIdentifier"
+                  "userForeignIdentifier",
+                  "product"
                 ]
               },
               "examples": {
