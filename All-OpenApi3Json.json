@@ -853,7 +853,15 @@
                     }
                   }
                 },
-                "examples": {}
+                "examples": {
+                  "Hubspot Install Ex": {
+                    "value": {
+                      "url": "https://app.hubspot.com/oauth/authorize?client_id=6dc4b7ab-3ffd-4bcb-8046-7992dc102543&scope=contacts%20forms&redirect_uri=https%3A%2F%2Fapi-dot-stackgo-300922.ts.r.appspot.com%2Fhubspot%2Fhbdev-965a9683-a2bf-420b-9551-dcd3a62bb7b8%2Fcallback&state=test%40test.com",
+                      "userForeignIdentifier": "test@test.com",
+                      "UUID": "965a9683-a2bf-420b-9551-dcd3a62bb7b8"
+                    }
+                  }
+                }
               }
             }
           }
