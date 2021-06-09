@@ -11911,41 +11911,6 @@
           "description": "Xero app reference"
         }
       ]
-    },
-    "/Contacts": {
-      "get": {
-        "description": "xero api",
-        "tags": [
-          "Xero"
-        ],
-        "summary": "https://api.xero.com/api.xro/2.0/Contacts",
-        "operationId": "https://api.xero.com/api.xro/2.0/Contacts",
-        "parameters": [
-          {
-            "name": "xero-tenant-id",
-            "in": "header",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string",
-              "example": "d16895be-193c-4d9e-be51-9652434268ca"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        },
-        "deprecated": false,
-        "servers": [
-          {
-            "url": "https://api.xero.com/api.xro/2.0",
-            "variables": {}
-          }
-        ]
-      }
     }
   },
   "components": {
