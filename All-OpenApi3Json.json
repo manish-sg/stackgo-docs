@@ -28,7 +28,7 @@
         "tags": [
           "Atlassian"
         ],
-        "summary": "Atlassian Get Install Link",
+        "summary": "Atlassian Install Link",
         "operationId": "AtlassianGetInstallLink",
         "parameters": [
           {
