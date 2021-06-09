@@ -882,7 +882,7 @@
         }
       ]
     },
-    "/raw/{HubspoAppSlug}": {
+    "/raw/{HubspotAppSlug}t": {
       "post": {
         "description": "Use this endpoint for proxying calls to the Hubspot platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developers.hubspot.com/docs/api/overview` can be used in this way. ",
         "summary": "Hubspot proxy calls",
@@ -1705,7 +1705,7 @@
           "schema": {
             "type": "string"
           },
-          "name": "HubspoAppSlug",
+          "name": "HubspotAppSlug",
           "in": "path",
           "required": true,
           "description": "Hubspot App reference"
