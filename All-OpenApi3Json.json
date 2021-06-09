@@ -139,12 +139,12 @@
           {
             "schema": {
               "type": "string",
-              "pattern": "Bearer ^[A-Za-z0-9]"
+              "pattern": "Bearer {StackGo Token}"
             },
             "in": "header",
             "name": "Authorization",
             "required": true,
-            "description": "Bearer {StackGo Token}"
+            "description": "See [here](https://docs.stackgo.io/docs/stackgo-docs/All-OpenApi3Json.json/paths/~1oauth~1token/post) on how to generate the StackGo tokens"
           }
         ],
         "requestBody": {
