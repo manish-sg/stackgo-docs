@@ -886,7 +886,7 @@
       "post": {
         "description": "Use this endpoint for proxying calls to the Hubspot platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developers.hubspot.com/docs/api/overview` can be used in this way. ",
         "summary": "Hubspot proxy calls",
-        "operationId": "AtlassianproxycallsCopy",
+        "operationId": "HubspotproxycallsCopy",
         "parameters": [
           {
             "schema": {
@@ -1815,7 +1815,7 @@
       "post": {
         "description": "Use this endpoint for proxying calls to the Pipedrive CRM using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developers.pipedrive.com/docs/api/v1` can be used in this way. ",
         "summary": "Pipedrive proxy calls",
-        "operationId": "AtlassianproxycallsCopy",
+        "operationId": "PipedriveproxycallsCopy",
         "parameters": [
           {
             "schema": {
