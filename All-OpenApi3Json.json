@@ -10957,56 +10957,48 @@
             "application/x-www-form-urlencoded": {
               "encoding": {},
               "schema": {
-                "type": "object",
-                "minProperties": 0,
                 "description": "",
+                "type": "object",
                 "properties": {
                   "method": {
                     "type": "string",
-                    "example": "GET",
-                    "description": "HTTP method like GET,POST etc.",
-                    "enum": [
-                      "GET",
-                      "POST",
-                      "PUT",
-                      "PATCH",
-                      "DELETE",
-                      "HEAD",
-                      "OPTIONS"
-                    ]
+                    "minLength": 1
                   },
                   "url": {
                     "type": "string",
-                    "example": "https://stackgo.atlassian.net/wiki/rest/api/content/163843?expand=body.storage",
-                    "description": "The actual `url` endpoint you would like to access"
+                    "minLength": 1
                   },
                   "userForeignIdentifier": {
                     "type": "string",
-                    "example": "stackgo-prod",
-                    "description": "User reference"
-                  },
-                  "body": {
-                    "type": "string",
-                    "description": "Optional. Provide the body of the request for 'POST` or `PUT` calls"
+                    "minLength": 1
                   },
                   "headers": {
                     "type": "string",
-                    "description": "Optional. To pass custom headers"
+                    "minLength": 1
                   }
                 },
                 "required": [
                   "method",
                   "url",
-                  "userForeignIdentifier"
-                ]
+                  "userForeignIdentifier",
+                  "headers"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "method": "GET",
+                    "url": "https://api.xero.com/api.xro/2.0/Contacts",
+                    "userForeignIdentifier": "xero-prod",
+                    "headers": "{\"xero-tenant-id\":\"d16895be-193c-4d9e-be51-9652434268ca\"}"
+                  }
+                }
               },
               "examples": {
                 "example call to jira": {
                   "value": {
-                    "method": "GET",
-                    "userForeignIdentifier": "ff29fea1-82fa-482d-bed2-226e4ad39f21",
-                    "url": "rest/api/3/search?jql=project%20%3D%20STAC&feilds=*all",
-                    "product": "jira"
+                    "method": "get",
+                    "url": "https://api.xero.com/api.xro/2.0/Contacts",
+                    "userForeignIdentifier": "xero-prod",
+                    "headers": "{\"xero-tenant-id\":\"d16895be-193c-4d9e-be51-9652434268ca\"}"
                   }
                 }
               }
@@ -11138,418 +11130,752 @@
                   "eaxmple response": {
                     "value": {
                       "data": {
-                        "expand": "schema,names",
-                        "startAt": 0,
-                        "maxResults": 50,
-                        "total": 2,
-                        "issues": [
+                        "Id": "43c989df-7f49-490a-81e1-e6af35c62bdb",
+                        "Status": "OK",
+                        "ProviderName": "StackGo Prod",
+                        "DateTimeUTC": "/Date(1623234868220)/",
+                        "Contacts": [
                           {
-                            "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-                            "id": "10001",
-                            "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/10001",
-                            "key": "STAC-2",
-                            "fields": {
-                              "statuscategorychangedate": "2021-03-22T09:44:41.884+1100",
-                              "issuetype": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issuetype/10001",
-                                "id": "10001",
-                                "description": "Functionality or a feature expressed as a user goal.",
-                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
-                                "name": "Story",
-                                "subtask": false,
-                                "avatarId": 10315,
-                                "hierarchyLevel": 0
+                            "ContactID": "fb2dc728-4d7d-4f81-9c38-80d4a7a377c2",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "No Contact",
+                            "EmailAddress": "",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
                               },
-                              "timespent": null,
-                              "customfield_10030": [],
-                              "project": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/project/10000",
-                                "id": "10000",
-                                "key": "STAC",
-                                "name": "StackGo",
-                                "projectTypeKey": "software",
-                                "simplified": false,
-                                "avatarUrls": {
-                                  "48x48": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?pid=10000&avatarId=10408",
-                                  "24x24": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10408",
-                                  "16x16": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10408",
-                                  "32x32": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10408"
-                                }
-                              },
-                              "customfield_10031": null,
-                              "customfield_10032": null,
-                              "fixVersions": [],
-                              "customfield_10033": null,
-                              "customfield_10034": null,
-                              "aggregatetimespent": null,
-                              "resolution": null,
-                              "customfield_10035": null,
-                              "customfield_10036": null,
-                              "customfield_10037": null,
-                              "customfield_10028": null,
-                              "customfield_10029": null,
-                              "resolutiondate": null,
-                              "workratio": -1,
-                              "lastViewed": "2021-05-28T13:29:08.222+1000",
-                              "watches": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-2/watchers",
-                                "watchCount": 1,
-                                "isWatching": true
-                              },
-                              "created": "2021-03-22T09:44:41.468+1100",
-                              "customfield_10020": null,
-                              "customfield_10021": null,
-                              "customfield_10022": null,
-                              "priority": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/priority/3",
-                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/images/icons/priorities/medium.svg",
-                                "name": "Medium",
-                                "id": "3"
-                              },
-                              "customfield_10023": null,
-                              "customfield_10024": null,
-                              "customfield_10025": null,
-                              "labels": [],
-                              "customfield_10016": null,
-                              "customfield_10017": null,
-                              "customfield_10018": {
-                                "hasEpicLinkFieldDependency": false,
-                                "showField": false,
-                                "nonEditableReason": {
-                                  "reason": "PLUGIN_LICENSE_ERROR",
-                                  "message": "The Parent Link is only available to Jira Premium users."
-                                }
-                              },
-                              "customfield_10019": "0|i00007:",
-                              "timeestimate": null,
-                              "aggregatetimeoriginalestimate": null,
-                              "versions": [],
-                              "issuelinks": [],
-                              "assignee": null,
-                              "updated": "2021-03-22T09:44:41.468+1100",
-                              "status": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/status/10000",
-                                "description": "",
-                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/",
-                                "name": "Backlog",
-                                "id": "10000",
-                                "statusCategory": {
-                                  "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/statuscategory/2",
-                                  "id": 2,
-                                  "key": "new",
-                                  "colorName": "blue-gray",
-                                  "name": "To Do"
-                                }
-                              },
-                              "components": [],
-                              "customfield_10050": null,
-                              "customfield_10051": null,
-                              "timeoriginalestimate": null,
-                              "customfield_10052": null,
-                              "customfield_10053": null,
-                              "description": {
-                                "version": 1,
-                                "type": "doc",
-                                "content": [
-                                  {
-                                    "type": "paragraph",
-                                    "content": [
-                                      {
-                                        "type": "text",
-                                        "text": "testing issues"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              "customfield_10010": null,
-                              "customfield_10054": null,
-                              "customfield_10014": null,
-                              "customfield_10015": null,
-                              "customfield_10005": null,
-                              "customfield_10049": null,
-                              "customfield_10006": null,
-                              "customfield_10007": null,
-                              "security": null,
-                              "customfield_10008": null,
-                              "aggregatetimeestimate": null,
-                              "customfield_10009": null,
-                              "summary": "test issue to be creates",
-                              "creator": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
-                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
-                                "emailAddress": "manish.p2077@gmail.com",
-                                "avatarUrls": {
-                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
-                                },
-                                "displayName": "Manish Pahwa",
-                                "active": true,
-                                "timeZone": "Australia/Sydney",
-                                "accountType": "atlassian"
-                              },
-                              "subtasks": [],
-                              "customfield_10040": null,
-                              "customfield_10041": null,
-                              "customfield_10042": null,
-                              "reporter": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
-                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
-                                "emailAddress": "manish.p2077@gmail.com",
-                                "avatarUrls": {
-                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
-                                },
-                                "displayName": "Manish Pahwa",
-                                "active": true,
-                                "timeZone": "Australia/Sydney",
-                                "accountType": "atlassian"
-                              },
-                              "customfield_10043": null,
-                              "aggregateprogress": {
-                                "progress": 0,
-                                "total": 0
-                              },
-                              "customfield_10000": "{}",
-                              "customfield_10044": null,
-                              "customfield_10001": null,
-                              "customfield_10045": null,
-                              "customfield_10046": null,
-                              "customfield_10002": null,
-                              "customfield_10003": null,
-                              "customfield_10047": null,
-                              "customfield_10004": null,
-                              "customfield_10048": null,
-                              "customfield_10038": null,
-                              "customfield_10039": null,
-                              "environment": null,
-                              "duedate": null,
-                              "progress": {
-                                "progress": 0,
-                                "total": 0
-                              },
-                              "votes": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-2/votes",
-                                "votes": 0,
-                                "hasVoted": false
+                              {
+                                "AddressType": "POBOX",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
                               }
-                            }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1604348383897+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": false,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
                           },
                           {
-                            "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-                            "id": "10000",
-                            "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/10000",
-                            "key": "STAC-1",
-                            "fields": {
-                              "statuscategorychangedate": "2021-03-22T09:36:23.216+1100",
-                              "issuetype": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issuetype/10001",
-                                "id": "10001",
-                                "description": "Functionality or a feature expressed as a user goal.",
-                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
-                                "name": "Story",
-                                "subtask": false,
-                                "avatarId": 10315,
-                                "hierarchyLevel": 0
+                            "ContactID": "cabc9342-db85-4d0b-897c-666fdb6698fb",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "NivaazKaur",
+                            "EmailAddress": "nksehmbhi@gmail.com",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
                               },
-                              "timespent": null,
-                              "customfield_10030": [],
-                              "project": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/project/10000",
-                                "id": "10000",
-                                "key": "STAC",
-                                "name": "StackGo",
-                                "projectTypeKey": "software",
-                                "simplified": false,
-                                "avatarUrls": {
-                                  "48x48": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?pid=10000&avatarId=10408",
-                                  "24x24": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10408",
-                                  "16x16": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10408",
-                                  "32x32": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10408"
-                                }
-                              },
-                              "customfield_10031": null,
-                              "customfield_10032": null,
-                              "fixVersions": [],
-                              "customfield_10033": null,
-                              "customfield_10034": null,
-                              "aggregatetimespent": null,
-                              "resolution": null,
-                              "customfield_10035": null,
-                              "customfield_10036": null,
-                              "customfield_10037": null,
-                              "customfield_10028": null,
-                              "customfield_10029": null,
-                              "resolutiondate": null,
-                              "workratio": -1,
-                              "watches": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-1/watchers",
-                                "watchCount": 1,
-                                "isWatching": true
-                              },
-                              "lastViewed": "2021-05-28T13:28:06.271+1000",
-                              "created": "2021-03-22T09:36:22.798+1100",
-                              "customfield_10020": null,
-                              "customfield_10021": null,
-                              "customfield_10022": null,
-                              "customfield_10023": null,
-                              "priority": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/priority/3",
-                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/images/icons/priorities/medium.svg",
-                                "name": "Medium",
-                                "id": "3"
-                              },
-                              "customfield_10024": null,
-                              "customfield_10025": null,
-                              "labels": [
-                                "high"
-                              ],
-                              "customfield_10016": null,
-                              "customfield_10017": null,
-                              "customfield_10018": {
-                                "hasEpicLinkFieldDependency": false,
-                                "showField": false,
-                                "nonEditableReason": {
-                                  "reason": "PLUGIN_LICENSE_ERROR",
-                                  "message": "The Parent Link is only available to Jira Premium users."
-                                }
-                              },
-                              "customfield_10019": "0|hzzzzz:",
-                              "timeestimate": null,
-                              "aggregatetimeoriginalestimate": null,
-                              "versions": [],
-                              "issuelinks": [],
-                              "assignee": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
-                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
-                                "emailAddress": "manish.p2077@gmail.com",
-                                "avatarUrls": {
-                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
-                                },
-                                "displayName": "Manish Pahwa",
-                                "active": true,
-                                "timeZone": "Australia/Sydney",
-                                "accountType": "atlassian"
-                              },
-                              "updated": "2021-03-22T09:36:22.798+1100",
-                              "status": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/status/10000",
-                                "description": "",
-                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/",
-                                "name": "Backlog",
-                                "id": "10000",
-                                "statusCategory": {
-                                  "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/statuscategory/2",
-                                  "id": 2,
-                                  "key": "new",
-                                  "colorName": "blue-gray",
-                                  "name": "To Do"
-                                }
-                              },
-                              "components": [],
-                              "customfield_10050": null,
-                              "timeoriginalestimate": null,
-                              "customfield_10051": null,
-                              "customfield_10052": null,
-                              "description": {
-                                "version": 1,
-                                "type": "doc",
-                                "content": [
-                                  {
-                                    "type": "paragraph",
-                                    "content": [
-                                      {
-                                        "type": "text",
-                                        "text": "This is a test for the api to pull up"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              "customfield_10053": null,
-                              "customfield_10054": null,
-                              "customfield_10010": null,
-                              "customfield_10014": null,
-                              "customfield_10015": null,
-                              "customfield_10049": null,
-                              "customfield_10005": null,
-                              "customfield_10006": null,
-                              "security": null,
-                              "customfield_10007": null,
-                              "customfield_10008": null,
-                              "aggregatetimeestimate": null,
-                              "customfield_10009": null,
-                              "summary": "Test issues ",
-                              "creator": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
-                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
-                                "emailAddress": "manish.p2077@gmail.com",
-                                "avatarUrls": {
-                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
-                                },
-                                "displayName": "Manish Pahwa",
-                                "active": true,
-                                "timeZone": "Australia/Sydney",
-                                "accountType": "atlassian"
-                              },
-                              "subtasks": [],
-                              "customfield_10040": null,
-                              "customfield_10041": null,
-                              "customfield_10042": null,
-                              "reporter": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
-                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
-                                "emailAddress": "manish.p2077@gmail.com",
-                                "avatarUrls": {
-                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
-                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
-                                },
-                                "displayName": "Manish Pahwa",
-                                "active": true,
-                                "timeZone": "Australia/Sydney",
-                                "accountType": "atlassian"
-                              },
-                              "customfield_10043": null,
-                              "aggregateprogress": {
-                                "progress": 0,
-                                "total": 0
-                              },
-                              "customfield_10000": "{}",
-                              "customfield_10044": null,
-                              "customfield_10001": null,
-                              "customfield_10045": null,
-                              "customfield_10002": null,
-                              "customfield_10046": null,
-                              "customfield_10047": null,
-                              "customfield_10003": null,
-                              "customfield_10004": null,
-                              "customfield_10048": null,
-                              "customfield_10038": null,
-                              "customfield_10039": null,
-                              "environment": null,
-                              "duedate": null,
-                              "progress": {
-                                "progress": 0,
-                                "total": 0
-                              },
-                              "votes": {
-                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-1/votes",
-                                "votes": 0,
-                                "hasVoted": false
+                              {
+                                "AddressType": "POBOX",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
                               }
-                            }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1604348692773+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": true,
+                            "IsCustomer": false,
+                            "DefaultCurrency": "AUD",
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "ac290bd0-9e80-430a-be6b-f31230b4023f",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "The Third Floor Pty Ltd",
+                            "EmailAddress": "",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              },
+                              {
+                                "AddressType": "POBOX",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1605403247033+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": true,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "fbd95282-a726-406a-bbc3-360379ca5e8a",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "Generated by Xero Payroll",
+                            "EmailAddress": "",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              },
+                              {
+                                "AddressType": "POBOX",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1605582952030+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": false,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "58fd0b49-0e3a-4342-95a2-6e214eb602f9",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "Xero",
+                            "EmailAddress": "",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              },
+                              {
+                                "AddressType": "POBOX",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1605583620590+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": false,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "8a3afc08-804b-4a89-93a8-af538d1cf068",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "Manish Pahwa",
+                            "EmailAddress": "",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              },
+                              {
+                                "AddressType": "POBOX",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1605585736540+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": false,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "b1c5254d-5e52-4d46-bba2-c5c4106a3ebe",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "1&1 Ionos",
+                            "Addresses": [
+                              {
+                                "AddressType": "POBOX"
+                              },
+                              {
+                                "AddressType": "STREET"
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI"
+                              },
+                              {
+                                "PhoneType": "DEFAULT"
+                              },
+                              {
+                                "PhoneType": "FAX"
+                              },
+                              {
+                                "PhoneType": "MOBILE"
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1607393881180+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": false,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "8ea4220f-157d-4e78-8369-48e00465f324",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "Jon Wolfgang",
+                            "EmailAddress": "",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              },
+                              {
+                                "AddressType": "POBOX",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1607637462693+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": true,
+                            "IsCustomer": false,
+                            "DefaultCurrency": "AUD",
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "4b420409-93da-4e49-8e66-cb15bc5ea04b",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "x.ai",
+                            "EmailAddress": "",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              },
+                              {
+                                "AddressType": "POBOX",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1607638170327+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": false,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "56a962a6-772c-4c22-8f5d-3342211408e7",
+                            "ContactNumber": "9f4b940ce4d5a9253d6aeae2167fa42c29e2a8d470fe5456a9",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "Manish Pahwa (manish@stackgo.io)",
+                            "FirstName": "Manish",
+                            "LastName": "Pahwa",
+                            "EmailAddress": "manish@stackgo.io",
+                            "BankAccountDetails": "06318210789441",
+                            "Addresses": [
+                              {
+                                "AddressType": "POBOX"
+                              },
+                              {
+                                "AddressType": "STREET"
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI"
+                              },
+                              {
+                                "PhoneType": "DEFAULT"
+                              },
+                              {
+                                "PhoneType": "FAX"
+                              },
+                              {
+                                "PhoneType": "MOBILE"
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1607638564633+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": true,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "65a4ebc6-25a9-4a41-b1d1-f4f8c423058f",
+                            "ContactNumber": "057ed004147b9e9810a62a111541c0651c5858e86ac910b7eb",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "Matthew Collis",
+                            "FirstName": "Matthew",
+                            "LastName": "Collis",
+                            "EmailAddress": "matt@stackgo.io",
+                            "BankAccountDetails": "082057777091298",
+                            "Addresses": [
+                              {
+                                "AddressType": "POBOX"
+                              },
+                              {
+                                "AddressType": "STREET"
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI"
+                              },
+                              {
+                                "PhoneType": "DEFAULT"
+                              },
+                              {
+                                "PhoneType": "FAX"
+                              },
+                              {
+                                "PhoneType": "MOBILE"
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1607638564817+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": true,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "a9806be1-2e35-4656-8f45-7ca341a587e8",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "Super",
+                            "EmailAddress": "",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              },
+                              {
+                                "AddressType": "POBOX",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1608001955860+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": false,
+                            "IsCustomer": false,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "46dc3d96-591d-433a-ab85-a96dc5714bb3",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "Emily Alexander",
+                            "EmailAddress": "emily1990@gmail.com",
+                            "BankAccountDetails": "",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": ""
+                              },
+                              {
+                                "AddressType": "POBOX",
+                                "AddressLine1": "8 Old Samuel St",
+                                "AddressLine2": "",
+                                "AddressLine3": "",
+                                "AddressLine4": "",
+                                "City": "MONA VALE",
+                                "Region": "NSW",
+                                "PostalCode": "2103",
+                                "Country": "Australia",
+                                "AttentionTo": ""
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1611620370843+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": true,
+                            "IsCustomer": false,
+                            "DefaultCurrency": "AUD",
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
+                          },
+                          {
+                            "ContactID": "6dd621c2-b2ee-4241-9b69-69c623e4411e",
+                            "ContactStatus": "ACTIVE",
+                            "Name": "Jobs for NSW",
+                            "FirstName": "",
+                            "LastName": "",
+                            "EmailAddress": "mvp.bp@treasury.nsw.gov.au",
+                            "BankAccountDetails": "",
+                            "TaxNumber": "55437667728",
+                            "Addresses": [
+                              {
+                                "AddressType": "STREET",
+                                "City": "",
+                                "Region": "",
+                                "PostalCode": "",
+                                "Country": "",
+                                "AttentionTo": ""
+                              },
+                              {
+                                "AddressType": "POBOX",
+                                "AddressLine1": "Locked Bag 6009",
+                                "City": "ORANGE",
+                                "Region": "NSW",
+                                "PostalCode": "2800",
+                                "Country": "ABN 55 437 667 728",
+                                "AttentionTo": ""
+                              }
+                            ],
+                            "Phones": [
+                              {
+                                "PhoneType": "DDI",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "DEFAULT",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "FAX",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              },
+                              {
+                                "PhoneType": "MOBILE",
+                                "PhoneNumber": "",
+                                "PhoneAreaCode": "",
+                                "PhoneCountryCode": ""
+                              }
+                            ],
+                            "UpdatedDateUTC": "/Date(1615519719120+0000)/",
+                            "ContactGroups": [],
+                            "IsSupplier": false,
+                            "IsCustomer": true,
+                            "ContactPersons": [],
+                            "HasAttachments": false,
+                            "HasValidationErrors": false
                           }
                         ]
                       }
@@ -11558,7 +11884,7 @@
                 }
               }
             },
-            "description": "All results from the Atlassian platform are transparently passed as the response. See examples."
+            "description": "All results from the Xero platform are transparently passed as the response. See examples."
           }
         },
         "deprecated": false,
