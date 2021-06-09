@@ -135,7 +135,17 @@
         ],
         "summary": "Atlassian proxy calls",
         "operationId": "AtlassianproxycallsCopy",
-        "parameters": [],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authoization",
+            "required": true,
+            "description": "Bearer {StackGo Token}"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
