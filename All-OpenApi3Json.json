@@ -748,13 +748,13 @@
         ]
       }
     },
-    "/pipedrive/auth/pipe": {
+    "/pipedrive/auth/{appSlug}": {
       "get": {
-        "description": "pipedrive api",
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Pipedrive credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
         "tags": [
           "Pipedrive"
         ],
-        "summary": "Pipedrive Get Install Link",
+        "summary": "Pipedrive Install Link",
         "operationId": "PipedriveGetInstallLink",
         "parameters": [
           {
@@ -766,7 +766,8 @@
             "schema": {
               "type": "string",
               "example": "pipe@sg.com"
-            }
+            },
+            "description": "Unique reference to a \"user\" in your application context. Can be a email address, UUID, Tenancy ID or similar"
           },
           {
             "schema": {
@@ -774,7 +775,7 @@
             },
             "in": "header",
             "name": "Authorization",
-            "description": "token heaer",
+            "description": "Bearer {StackGo Token",
             "required": true
           }
         ],
@@ -782,6 +783,43 @@
           "200": {
             "description": "",
             "headers": {}
+          },
+          "": {
+            "description": "The response contains a customised intallation link for the `userForeignIdentifier`. This response can be used in the `connected accounts` or the `integrations page` of your app inviting the users to authorise your application to access their tools",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "userForeignIdentifier": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "UUID": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "userForeignIdentifier",
+                    "UUID"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "url": "string",
+                      "userForeignIdentifier": "string",
+                      "UUID": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "deprecated": false,
@@ -796,7 +834,18 @@
             "StackGo Client Credentials": []
           }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "appSlug",
+          "in": "path",
+          "required": true,
+          "description": "Pipedrive identifier from StackGo"
+        }
+      ]
     },
     "/raw/pipe": {
       "post": {
