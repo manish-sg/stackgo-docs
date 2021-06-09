@@ -17,12 +17,8 @@
       "variables": {}
     },
     {
-      "url": "https://test-store-pp-sg.myshopify.com/admin/api/2021-01",
-      "variables": {}
-    },
-    {
       "url": "https://stackgo.au.auth0.com/oauth/token",
-      "description": ""
+      "description": "SG"
     }
   ],
   "paths": {
@@ -937,11 +933,6 @@
       }
     },
     "/oauth/token": {
-      "servers": [
-        {
-          "url": "https://test.com"
-        }
-      ],
       "post": {
         "description": "StackGo api to fetch the tokens",
         "tags": [
@@ -994,7 +985,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://stackgo.au.auth0.com/oauth/token",
             "variables": {}
           }
         ],
