@@ -34,26 +34,24 @@ Ready to explore? Please get in [touch](link)
 
 Diagram
 
-
+![](url)
 
 
 ### Key Concepts
 
+From a technical implementation point of view there are a few concepts to introduce to make the most of the StackGo platform.
+
+
+User Foreign Identifer `userForeignIdentifer`
+
+App Credentials Identifier `appSlug`
 
 
 ### Tutorial 
 Follow along for a guided tour on how to use StackGo to make SaaS integrations easier. 
 
 
-From a technical implementation point of view there are a few concepts to introduce to make the most of the StackGo platform.
 
-For StackGo to provide with the best developer experiance our product suite starts off with a managed authentication process for building oAuth based app experiances. 
-
-When you login to the StackGo platform you will see prompts asking you to select which platform would you like to create a connection. The first step for that would be 
-
-User Foreign Identifer `userForeignIdentifer`
-
-App Credentials Identifier `appSlug`
 
 
 
