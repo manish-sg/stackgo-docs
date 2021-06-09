@@ -10932,9 +10932,9 @@
         }
       ]
     },
-    "/raw/xe": {
+    "/raw/xe/{XeroAppSlug}": {
       "post": {
-        "description": "Use this endpoint for proxying calls to the Atlassian platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developer.atlassian.com` can be used in this way. ",
+        "description": "Use this endpoint for proxying calls to the Xero platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developer.xero.com/` can be used in this way. ",
         "tags": [
           "Xero"
         ],
@@ -11013,7 +11013,7 @@
             }
           },
           "required": false,
-          "description": "The request body is basically a structure to describe a HTTP call you would like to execute against the Atlassian suite of tools.  "
+          "description": "The request body is basically a structure to describe a HTTP call you would like to execute against the Xero suite of tools.  "
         },
         "responses": {
           "200": {
@@ -11579,10 +11579,10 @@
           "schema": {
             "type": "string"
           },
-          "name": "AtlassianAppSlug",
+          "name": "XeroAppSlug",
           "in": "path",
           "required": true,
-          "description": "Atlassian app reference"
+          "description": "Xero app reference"
         }
       ]
     },
