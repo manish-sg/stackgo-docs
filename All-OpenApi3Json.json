@@ -24,7 +24,7 @@
   "paths": {
     "/atlassian/auth/{appSlug}": {
       "get": {
-        "description": "atlassian api",
+        "description": "Use this endpoint to generate an `Authorisation Link` for a SaaS platform registered on StackGo referenced by the `appSlug` and a specific user referenced via `userForgeignIdentifier`",
         "tags": [
           "Atlassian"
         ],
@@ -45,20 +45,20 @@
           },
           {
             "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "description": "If true, it automatically redirects the caller to the SaaS platform. In this case Atlassian",
+            "name": "redirect"
+          },
+          {
+            "schema": {
               "type": "string"
             },
             "in": "header",
             "name": "Authorization",
-            "description": "Bearer {Insert your StackGo token}",
+            "description": "Bearer {StackGo Token}",
             "required": true
-          },
-          {
-            "schema": {
-              "type": "boolean"
-            },
-            "in": "query",
-            "name": "redirect",
-            "description": "If true, it automatically redirects the caller to the SaaS platform. In this case Atlassian"
           }
         ],
         "responses": {
@@ -193,7 +193,7 @@
         },
         "responses": {
           "200": {
-            "description": "StackGo will check for tokens matching 'userForeignIdentifier` and then place them in a request to Atlassian. Any results or errors are transparently passed to the user ",
+            "description": "StackGo will check for tokens matching `userForeignIdentifier` and then place them in a request to Atlassian. Any results or errors are transparently passed to the user ",
             "headers": {},
             "content": {
               "application/json": {
@@ -929,16 +929,17 @@
             "url": "https://test-store-pp-sg.myshopify.com/admin/api/2021-01",
             "variables": {}
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/oauth/token": {
       "post": {
-        "description": "StackGo api to fetch the tokens",
+        "description": "Use StackGo credentials (`client_id` and `client_secret`) to generate a token that will be used to authenticate all request with StackGo. Please consider them as sensitive information and never commit them to git or expose them publicly. Tokens expire every *86400* seconds and will need to be refreshed.   ",
         "tags": [
           "StackGo"
         ],
-        "summary": "Get Prod Tokens",
+        "summary": "Fetch StackGo Tokens",
         "operationId": "GetProdTokens",
         "parameters": [],
         "requestBody": {
@@ -971,6 +972,16 @@
                     "example": "client_credentials"
                   }
                 }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "client_id": "client_id",
+                    "client_secret": "client_secret",
+                    "audience": "https://stackgo.prod.api",
+                    "grant_type": "client_credentials"
+                  }
+                }
               }
             }
           },
@@ -978,8 +989,50 @@
         },
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "StackGo expects all authenticated API calls to have a Authorization header that has a value of \"Bearer `access_token`\"",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "expires_in": {
+                      "type": "number"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "access_token",
+                    "expires_in",
+                    "token_type"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhjNTN6T0ZoY2lXZXVTNHR5REF2dyJ9.eyJpc3MiOiJodHRwczovL3N0YWNrZ28uYXUuYXV0aDAuY29tLyIsInN1YiI6IkhBd0daVlF6cWhOQlY4bEt0RGNNcUV5dXdUd2ZWSjBFQGNsaWVudHMiLCJhdWQiOiJodHRwczovL3N0YWNrZ28ucHJvZC5hcGkiLCJpYXQiOjE2MjMyMjE0MDEsImV4cCI6MTYyMzMwNzgwMSwiYXpwIjoiSEF3R1pWUXpxaE5CVjhsS3REY01xRXl1d1R3ZlZKMEUiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.lovgvkRawqBofSd1lVvERti950dExdxFAlzA2rX7-mZi02fw6xaN5e6DA06la_NWxEGKy7PZ-9auz7GEehFNwjzw-TkLGLNCI6KfYarzeED4JeDGyM1HZ0UuL16Obf9ygGKnAtbLqFrhYOANm6iiK82i-cOMkA9tqIGpXLvvMjdNccnDGm522gd0YAY6-km33TKBO20Xr7RN_YQ9q5YE5QNcVTVtLxVsVI19Wvt2I0OI5rDNSTT-AYavqekqlgpVhSHsHA76r4Ch1mjs1lg8RtQXi3btG7oxq-rqhQLtk476SxXQSMVg0D2J_N7TbwGmGmEHkCnyjRh41xNAWMw5Xg",
+                      "expires_in": 86400,
+                      "token_type": "Bearer"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhjNTN6T0ZoY2lXZXVTNHR5REF2dyJ9.eyJpc3MiOiJodHRwczovL3N0YWNrZ28uYXUuYXV0aDAuY29tLyIsInN1YiI6IkhBd0daVlF6cWhOQlY4bEt0RGNNcUV5dXdUd2ZWSjBFQGNsaWVudHMiLCJhdWQiOiJodHRwczovL3N0YWNrZ28ucHJvZC5hcGkiLCJpYXQiOjE2MjMyMjE0MDEsImV4cCI6MTYyMzMwNzgwMSwiYXpwIjoiSEF3R1pWUXpxaE5CVjhsS3REY01xRXl1d1R3ZlZKMEUiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.lovgvkRawqBofSd1lVvERti950dExdxFAlzA2rX7-mZi02fw6xaN5e6DA06la_NWxEGKy7PZ-9auz7GEehFNwjzw-TkLGLNCI6KfYarzeED4JeDGyM1HZ0UuL16Obf9ygGKnAtbLqFrhYOANm6iiK82i-cOMkA9tqIGpXLvvMjdNccnDGm522gd0YAY6-km33TKBO20Xr7RN_YQ9q5YE5QNcVTVtLxVsVI19Wvt2I0OI5rDNSTT-AYavqekqlgpVhSHsHA76r4Ch1mjs1lg8RtQXi3btG7oxq-rqhQLtk476SxXQSMVg0D2J_N7TbwGmGmEHkCnyjRh41xNAWMw5Xg",
+                      "expires_in": 86400,
+                      "token_type": "Bearer"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "deprecated": false,
