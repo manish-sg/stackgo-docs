@@ -884,7 +884,7 @@
         "tags": [
           "Atlassian"
         ],
-        "summary": "Atlassian proxy calls",
+        "summary": "Hubspot proxy calls",
         "operationId": "AtlassianproxycallsCopy",
         "parameters": [
           {
