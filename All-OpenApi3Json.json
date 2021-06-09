@@ -10772,7 +10772,7 @@
             "headers": {}
           }
         },
-        "deprecated": false,
+        "deprecated": true,
         "security": [],
         "servers": [
           {
