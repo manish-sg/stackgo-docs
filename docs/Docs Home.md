@@ -19,9 +19,16 @@ Interested in learning more? Please work through our tutorial for [a tutorial](l
 
 #### Unified APIs
 
-While helping customers with the their SaaS product integrations we worked with a large number of SaaS platforms that have offerings the same domain. 
+While helping customers with the their SaaS product integrations we worked with a large number of SaaS platforms that have similar offerings within a vertical. However due to differing views in API design and product terminology they refer to the same canonical elements of a domain with differing terminology and support different operations. 
+Since StackGo is the nexus off all oAuth based connections as per the `Managed Authentication` offereing we added a layer of API translation that creates a notional standard for common resources within a vertical. For example, with CRMs, StackGo can define a standard for `Contact` and define CRUD operations and fields that can be applied to any CRM.
 
-FaaS
+Want to see it in action? Here is an article that works its way through [an example](example)
+
+#### FaaS - Function as a Service
+
+APIs provided by SaaS platforms are the elemental operations for building workflows for SaaS product integrations. Often times a number of these operations need to be strung together to create a workflow that adds value to the end-users journey. With our `FaaS` offering we provide an easy to use interface to compose powerful workflows without having a large burden of changes on your existing code bases and having a very desireable de-coupliing of integration logic code from main applicaiton.
+
+Ready to explore? Please get in [touch](link)
 
 ### Technical Architecture
 
