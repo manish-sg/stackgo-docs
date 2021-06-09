@@ -10746,43 +10746,6 @@
         }
       ]
     },
-    "/graphql.json": {
-      "post": {
-        "description": "Shopify api",
-        "tags": [
-          "Shopify"
-        ],
-        "summary": "Straight to shopify",
-        "operationId": "Straighttoshopify",
-        "parameters": [
-          {
-            "name": "x-shopify-access-token",
-            "in": "header",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string",
-              "example": "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"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        },
-        "deprecated": true,
-        "security": [],
-        "servers": [
-          {
-            "url": "https://test-store-pp-sg.myshopify.com/admin/api/2021-01",
-            "variables": {}
-          }
-        ],
-        "x-internal": true
-      }
-    },
     "/oauth/token": {
       "post": {
         "description": "Use StackGo credentials (`client_id` and `client_secret`) to generate a token that will be used to authenticate all request with StackGo. Please consider them as sensitive information and never commit them to git or expose them publicly. Tokens expire every *86400* seconds and will need to be refreshed.   ",
