@@ -1193,13 +1193,13 @@
       },
       "parameters": []
     },
-    "/xero/auth/xe": {
+    "/xero/auth/{aapSlug}": {
       "get": {
-        "description": "xero api",
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Xero credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier",
         "tags": [
           "Xero"
         ],
-        "summary": "Xero Get Install Link",
+        "summary": "Xero Install Link",
         "operationId": "XeroGetInstallLink",
         "parameters": [
           {
@@ -1211,13 +1211,34 @@
             "schema": {
               "type": "string",
               "example": "xero-prod"
-            }
+            },
+            "description": "Unique reference to a \"user\" in your application context. Can be a email address, UUID, Tenancy ID or similar"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authoization",
+            "description": "Bearer {StackGo Token}",
+            "required": true
           }
         ],
         "responses": {
           "200": {
             "description": "",
             "headers": {}
+          },
+          "": {
+            "description": "The response contains a customised intallation link for the `userForeignIdentifier`. This response can be used in the `connected accounts` or the `integrations page` of your app inviting the users to authorise your application to access their tool",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
           }
         },
         "deprecated": false,
@@ -1226,8 +1247,24 @@
             "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
             "variables": {}
           }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "aapSlug",
+          "in": "path",
+          "required": true,
+          "description": "Xero identifier from StackG"
+        }
+      ]
     },
     "/raw/xe": {
       "post": {
