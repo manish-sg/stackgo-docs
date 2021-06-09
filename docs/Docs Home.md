@@ -49,7 +49,3 @@ Follow along and build your SaaS product integrations
 [https://www.loom.com/share/4e842856c3244477a4dc677778333ada?sharedAppSource=personal_library](https://www.loom.com/share/4e842856c3244477a4dc677778333ada?sharedAppSource=personal_library)
 
 [Getting started with Hubspot](../docs/GettingStarted-Hubspot.md)
-
-[How to make a PipeDrive integration with StackGo]()
-
-[How to make a Shopify integration with StackGo]()
