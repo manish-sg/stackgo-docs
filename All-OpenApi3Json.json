@@ -24,7 +24,7 @@
   "paths": {
     "/atlassian/auth/{appSlug}": {
       "get": {
-        "description": "Use this endpoint to generate an `Authorisation Link` for a SaaS platform registered on StackGo referenced by the `appSlug` and a specific user referenced via `userForgeignIdentifier`",
+        "description": "Use this endpoint to generate an `Authorisation Link` for a Atlassian credentials registered on StackGo referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
         "tags": [
           "Atlassian"
         ],
@@ -63,7 +63,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The response for contains a customised intallation link for the `userForeignIdentifier` that has been supplied. This API can be used in the `connected accounts` or the `integrations` page of your app inviting the users to authorise your application to access their tools.",
+            "description": "The response for contains a customised intallation link for the `userForeignIdentifier`. This response can be used in the `connected accounts` or the `integrations` page of your app inviting the users to authorise your application to access their tools.",
             "headers": {},
             "content": {
               "application/json": {
