@@ -901,13 +901,13 @@
         ]
       }
     },
-    "/shopify/auth/test-store-pp-sg": {
+    "/shopify/auth/{appSlug}": {
       "get": {
-        "description": "shopify api",
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Shopify credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
         "tags": [
           "Shopify"
         ],
-        "summary": "Shopify Get Install Link",
+        "summary": "Shopify Install Link",
         "operationId": "ShopifyGetInstallLink",
         "parameters": [
           {
@@ -919,13 +919,34 @@
             "schema": {
               "type": "string",
               "example": "test-store-pp-sg"
-            }
+            },
+            "description": "Unique reference to a \"user\" in your application context. Can be a email address, UUID, Tenancy ID or similar"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "Bearer {StackGo Token",
+            "name": "Authorization",
+            "required": true
           }
         ],
         "responses": {
           "200": {
             "description": "",
             "headers": {}
+          },
+          "": {
+            "description": "The response contains a customised intallation link for the `userForeignIdentifier`. This response can be used in the `connected accounts` or the `integrations page` of your app inviting the users to authorise your application to access their tools",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
           }
         },
         "deprecated": false,
@@ -934,8 +955,24 @@
             "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
             "variables": {}
           }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "appSlug",
+          "in": "path",
+          "required": true,
+          "description": "Shopify identifier from StackGo"
+        }
+      ]
     },
     "/shopify/test-store-pp-sg": {
       "post": {
