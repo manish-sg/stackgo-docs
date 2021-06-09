@@ -943,7 +943,7 @@
         }
       ],
       "post": {
-        "description": "StackGo api",
+        "description": "StackGo api to fetch the tokens",
         "tags": [
           "StackGo"
         ],
