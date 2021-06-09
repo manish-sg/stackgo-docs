@@ -158,7 +158,7 @@
                 "properties": {
                   "method": {
                     "type": "string",
-                    "example": "get",
+                    "example": "GET",
                     "description": "HTTP method like GET,POST etc.",
                     "enum": [
                       "GET",
@@ -198,7 +198,7 @@
               "examples": {
                 "example call to jira": {
                   "value": {
-                    "method": "get",
+                    "method": "GET",
                     "userForeignIdentifier": "ff29fea1-82fa-482d-bed2-226e4ad39f21",
                     "url": "rest/api/3/search?jql=project%20%3D%20STAC&feilds=*all",
                     "product": "jira"
