@@ -24,7 +24,7 @@
   "paths": {
     "/atlassian/auth/{appSlug}": {
       "get": {
-        "description": "Use this endpoint to generate an `Authorisation Link` for a Atlassian credentials registered on StackGo referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Atlassian credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
         "tags": [
           "Atlassian"
         ],
