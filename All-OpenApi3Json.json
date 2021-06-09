@@ -878,247 +878,809 @@
         }
       ]
     },
-    "/raw/hbdev": {
+    "/raw/{HubspotProxyCall}": {
       "post": {
-        "description": "hubspot proxy api",
+        "description": "Use this endpoint for proxying calls to the Hubspot platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developers.hubspot.com/docs/api/overview` can be used in this way. ",
         "tags": [
-          "Hubspot"
+          "Atlassian"
         ],
-        "summary": "Hubspot Proxy Calls Copy",
-        "operationId": "HubspotProxyCallsCopy",
-        "parameters": [],
+        "summary": "Atlassian proxy calls",
+        "operationId": "AtlassianproxycallsCopy",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "Bearer {StackGo Token}"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "See [here](https://docs.stackgo.io/docs/stackgo-docs/All-OpenApi3Json.json/paths/~1oauth~1token/post) on how to generate the StackGo tokens"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
               "encoding": {},
               "schema": {
+                "type": "object",
+                "minProperties": 0,
+                "description": "",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "example": "GET",
+                    "description": "HTTP method like GET,POST etc.",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "PATCH",
+                      "DELETE",
+                      "HEAD",
+                      "OPTIONS"
+                    ]
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://stackgo.atlassian.net/wiki/rest/api/content/163843?expand=body.storage",
+                    "description": "The actual `url` endpoint you would like to access"
+                  },
+                  "userForeignIdentifier": {
+                    "type": "string",
+                    "example": "stackgo-prod",
+                    "description": "User reference"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "Optional. Provide the body of the request for 'POST` or `PUT` calls"
+                  },
+                  "headers": {
+                    "type": "string",
+                    "description": "Optional. To pass custom headers"
+                  }
+                },
                 "required": [
                   "method",
                   "url",
                   "userForeignIdentifier"
-                ],
-                "type": "object",
-                "properties": {
-                  "method": {
-                    "type": "string",
-                    "example": "get"
-                  },
-                  "url": {
-                    "type": "string",
-                    "example": "https://api.hubapi.com/forms/v2/forms"
-                  },
-                  "userForeignIdentifier": {
-                    "type": "string",
-                    "example": "test@test.com"
+                ]
+              },
+              "examples": {
+                "example call to hubspot": {
+                  "value": {
+                    "method": "GET",
+                    "userForeignIdentifier": "ff29fea1-82fa-482d-bed2-226e4ad39f21",
+                    "url": "https://api.hubapi.com/forms/v2/forms"
                   }
                 }
               }
             }
           },
-          "required": false
+          "required": false,
+          "description": "The request body is basically a structure to describe a HTTP call you would like to execute against the Hubspot instance of `userForeignIdentifier`.  "
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "headers": {
-              "Content-Security-Policy": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            "description": "StackGo will check for tokens matching `userForeignIdentifier`, `appSlug` and then place a request to Hubspot. Any results or errors are transparently passed to the the API consumer. ",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "key": "value"
+                      }
+                    }
+                  },
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "Data recieved from the endpoint"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Hubspot get contacts": {
+                    "value": {
+                      "data": [
+                        {
+                          "portalId": 8511822,
+                          "guid": "f353e406-254c-4ae1-bca7-33968d1b4722",
+                          "name": "New registration form (January 28, 2021 11:05:02 AM) ",
+                          "action": "",
+                          "method": "POST",
+                          "cssClass": "hs-form stacked",
+                          "redirect": "",
+                          "submitText": "Submit",
+                          "followUpId": "",
+                          "notifyRecipients": "11766037",
+                          "leadNurturingCampaignId": "",
+                          "formFieldGroups": [
+                            {
+                              "fields": [
+                                {
+                                  "name": "email",
+                                  "label": "Email",
+                                  "type": "string",
+                                  "fieldType": "text",
+                                  "description": "",
+                                  "groupName": "contactinformation",
+                                  "displayOrder": -1,
+                                  "required": true,
+                                  "selectedOptions": [],
+                                  "options": [],
+                                  "validation": {
+                                    "name": "",
+                                    "message": "",
+                                    "data": "",
+                                    "useDefaultBlockList": false,
+                                    "blockedEmailAddresses": []
+                                  },
+                                  "enabled": true,
+                                  "hidden": false,
+                                  "defaultValue": "",
+                                  "isSmartField": false,
+                                  "unselectedLabel": "",
+                                  "placeholder": "",
+                                  "dependentFieldFilters": [],
+                                  "labelHidden": false,
+                                  "propertyObjectType": "CONTACT",
+                                  "metaData": [],
+                                  "objectTypeId": "0-1"
+                                }
+                              ],
+                              "default": true,
+                              "isSmartGroup": false,
+                              "richText": {
+                                "content": "",
+                                "type": "TEXT"
+                              },
+                              "isPageBreak": false
+                            },
+                            {
+                              "fields": [
+                                {
+                                  "name": "firstname",
+                                  "label": "First name",
+                                  "type": "string",
+                                  "fieldType": "text",
+                                  "description": "",
+                                  "groupName": "contactinformation",
+                                  "displayOrder": -1,
+                                  "required": false,
+                                  "selectedOptions": [],
+                                  "options": [],
+                                  "validation": {
+                                    "name": "",
+                                    "message": "",
+                                    "data": "",
+                                    "useDefaultBlockList": false,
+                                    "blockedEmailAddresses": []
+                                  },
+                                  "enabled": true,
+                                  "hidden": false,
+                                  "defaultValue": "",
+                                  "isSmartField": false,
+                                  "unselectedLabel": "",
+                                  "placeholder": "",
+                                  "dependentFieldFilters": [],
+                                  "labelHidden": false,
+                                  "propertyObjectType": "CONTACT",
+                                  "metaData": [],
+                                  "objectTypeId": "0-1"
+                                }
+                              ],
+                              "default": true,
+                              "isSmartGroup": false,
+                              "richText": {
+                                "content": "",
+                                "type": "TEXT"
+                              },
+                              "isPageBreak": false
+                            },
+                            {
+                              "fields": [
+                                {
+                                  "name": "lastname",
+                                  "label": "Last name",
+                                  "type": "string",
+                                  "fieldType": "text",
+                                  "description": "",
+                                  "groupName": "contactinformation",
+                                  "displayOrder": -1,
+                                  "required": false,
+                                  "selectedOptions": [],
+                                  "options": [],
+                                  "validation": {
+                                    "name": "",
+                                    "message": "",
+                                    "data": "",
+                                    "useDefaultBlockList": false,
+                                    "blockedEmailAddresses": []
+                                  },
+                                  "enabled": true,
+                                  "hidden": false,
+                                  "defaultValue": "",
+                                  "isSmartField": false,
+                                  "unselectedLabel": "",
+                                  "placeholder": "",
+                                  "dependentFieldFilters": [],
+                                  "labelHidden": false,
+                                  "propertyObjectType": "CONTACT",
+                                  "metaData": [],
+                                  "objectTypeId": "0-1"
+                                }
+                              ],
+                              "default": true,
+                              "isSmartGroup": false,
+                              "richText": {
+                                "content": "",
+                                "type": "TEXT"
+                              },
+                              "isPageBreak": false
+                            },
+                            {
+                              "fields": [
+                                {
+                                  "name": "phone",
+                                  "label": "Phone number",
+                                  "type": "string",
+                                  "fieldType": "text",
+                                  "description": "",
+                                  "groupName": "contactinformation",
+                                  "displayOrder": -1,
+                                  "required": false,
+                                  "selectedOptions": [],
+                                  "options": [],
+                                  "validation": {
+                                    "name": "",
+                                    "message": "",
+                                    "data": "7:20:true",
+                                    "useDefaultBlockList": false,
+                                    "blockedEmailAddresses": []
+                                  },
+                                  "enabled": true,
+                                  "hidden": false,
+                                  "defaultValue": "",
+                                  "isSmartField": false,
+                                  "unselectedLabel": "",
+                                  "placeholder": "",
+                                  "dependentFieldFilters": [],
+                                  "labelHidden": false,
+                                  "propertyObjectType": "CONTACT",
+                                  "metaData": [],
+                                  "objectTypeId": "0-1"
+                                }
+                              ],
+                              "default": true,
+                              "isSmartGroup": false,
+                              "richText": {
+                                "content": "",
+                                "type": "TEXT"
+                              },
+                              "isPageBreak": false
+                            }
+                          ],
+                          "createdAt": 1611792380136,
+                          "updatedAt": 1611792384849,
+                          "performableHtml": "",
+                          "migratedFrom": "",
+                          "ignoreCurrentValues": false,
+                          "metaData": [
+                            {
+                              "name": "lang",
+                              "value": "en"
+                            },
+                            {
+                              "name": "embedType",
+                              "value": "REGULAR"
+                            }
+                          ],
+                          "deletable": true,
+                          "inlineMessage": "Thanks for submitting the form.",
+                          "tmsId": "",
+                          "captchaEnabled": false,
+                          "campaignGuid": "",
+                          "cloneable": true,
+                          "editable": true,
+                          "formType": "HUBSPOT",
+                          "deletedAt": 0,
+                          "themeName": "canvas",
+                          "parentId": 0,
+                          "style": "{\"fontFamily\":\"arial, helvetica, sans-serif\",\"backgroundWidth\":\"100%\",\"labelTextColor\":\"#33475b\",\"labelTextSize\":\"13px\",\"helpTextColor\":\"#7C98B6\",\"helpTextSize\":\"11px\",\"legalConsentTextColor\":\"#33475b\",\"legalConsentTextSize\":\"14px\",\"submitColor\":\"#ff7a59\",\"submitAlignment\":\"left\",\"submitFontColor\":\"#ffffff\",\"submitSize\":\"12px\",\"paginationProgressColor\":\"#598aff\",\"paginationProgressTextColor\":\"#33475b\",\"paginationProgressShow\":true,\"paginationProgressTransition\":\"fade\",\"paginationProgressTheme\":\"default\",\"paginationContentUseScroll\":false,\"paginationContentScrollHeight\":\"100%\"}",
+                          "isPublished": true,
+                          "publishAt": 0,
+                          "unpublishAt": 0,
+                          "publishedAt": 0,
+                          "multivariateTest": {
+                            "variants": [],
+                            "startAtTimestamp": 0,
+                            "endAtTimestamp": 0,
+                            "winningVariantId": "",
+                            "finished": false,
+                            "controlId": ""
+                          },
+                          "kickbackEmailWorkflowId": 0,
+                          "kickbackEmailsJson": "",
+                          "customUid": "",
+                          "createMarketableContact": true,
+                          "editVersion": 0,
+                          "thankYouMessageJson": "",
+                          "themeColor": "",
+                          "alwaysCreateNewCompany": true,
+                          "internalUpdatedAt": 1611792384849,
+                          "businessUnitId": 0
+                        }
+                      ]
+                    }
                   }
                 }
-              },
-              "X-DNS-Prefetch-Control": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "off"
+              }
+            }
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "key"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "key": "value"
+                      }
+                    }
                   }
-                }
-              },
-              "Expect-CT": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "max-age=0"
-                  }
-                }
-              },
-              "X-Frame-Options": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "SAMEORIGIN"
-                  }
-                }
-              },
-              "Strict-Transport-Security": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "max-age=15552000; includeSubDomains"
-                  }
-                }
-              },
-              "X-Download-Options": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "noopen"
-                  }
-                }
-              },
-              "X-Content-Type-Options": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "nosniff"
-                  }
-                }
-              },
-              "X-Permitted-Cross-Domain-Policies": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "none"
-                  }
-                }
-              },
-              "Referrer-Policy": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "no-referrer"
-                  }
-                }
-              },
-              "X-XSS-Protection": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "0"
-                  }
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "*"
-                  }
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-                  }
-                }
-              },
-              "ETag": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "W/\"1102-JHP6KVQscKrjLKFMT7XapINKRmU\""
-                  }
-                }
-              },
-              "Vary": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Accept-Encoding"
-                  }
-                }
-              },
-              "Content-Encoding": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "gzip"
-                  }
-                }
-              },
-              "Date": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Sat, 17 Apr 2021 01:20:12 GMT"
-                  }
-                }
-              },
-              "Connection": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "keep-alive"
-                  }
-                }
-              },
-              "Keep-Alive": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "timeout=5"
-                  }
-                }
-              },
-              "Transfer-Encoding": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "chunked"
+                },
+                "examples": {
+                  "eaxmple response": {
+                    "value": {
+                      "data": {
+                        "expand": "schema,names",
+                        "startAt": 0,
+                        "maxResults": 50,
+                        "total": 2,
+                        "issues": [
+                          {
+                            "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+                            "id": "10001",
+                            "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/10001",
+                            "key": "STAC-2",
+                            "fields": {
+                              "statuscategorychangedate": "2021-03-22T09:44:41.884+1100",
+                              "issuetype": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issuetype/10001",
+                                "id": "10001",
+                                "description": "Functionality or a feature expressed as a user goal.",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+                                "name": "Story",
+                                "subtask": false,
+                                "avatarId": 10315,
+                                "hierarchyLevel": 0
+                              },
+                              "timespent": null,
+                              "customfield_10030": [],
+                              "project": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/project/10000",
+                                "id": "10000",
+                                "key": "STAC",
+                                "name": "StackGo",
+                                "projectTypeKey": "software",
+                                "simplified": false,
+                                "avatarUrls": {
+                                  "48x48": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?pid=10000&avatarId=10408",
+                                  "24x24": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10408",
+                                  "16x16": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10408",
+                                  "32x32": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10408"
+                                }
+                              },
+                              "customfield_10031": null,
+                              "customfield_10032": null,
+                              "fixVersions": [],
+                              "customfield_10033": null,
+                              "customfield_10034": null,
+                              "aggregatetimespent": null,
+                              "resolution": null,
+                              "customfield_10035": null,
+                              "customfield_10036": null,
+                              "customfield_10037": null,
+                              "customfield_10028": null,
+                              "customfield_10029": null,
+                              "resolutiondate": null,
+                              "workratio": -1,
+                              "lastViewed": "2021-05-28T13:29:08.222+1000",
+                              "watches": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-2/watchers",
+                                "watchCount": 1,
+                                "isWatching": true
+                              },
+                              "created": "2021-03-22T09:44:41.468+1100",
+                              "customfield_10020": null,
+                              "customfield_10021": null,
+                              "customfield_10022": null,
+                              "priority": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/priority/3",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/images/icons/priorities/medium.svg",
+                                "name": "Medium",
+                                "id": "3"
+                              },
+                              "customfield_10023": null,
+                              "customfield_10024": null,
+                              "customfield_10025": null,
+                              "labels": [],
+                              "customfield_10016": null,
+                              "customfield_10017": null,
+                              "customfield_10018": {
+                                "hasEpicLinkFieldDependency": false,
+                                "showField": false,
+                                "nonEditableReason": {
+                                  "reason": "PLUGIN_LICENSE_ERROR",
+                                  "message": "The Parent Link is only available to Jira Premium users."
+                                }
+                              },
+                              "customfield_10019": "0|i00007:",
+                              "timeestimate": null,
+                              "aggregatetimeoriginalestimate": null,
+                              "versions": [],
+                              "issuelinks": [],
+                              "assignee": null,
+                              "updated": "2021-03-22T09:44:41.468+1100",
+                              "status": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/status/10000",
+                                "description": "",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/",
+                                "name": "Backlog",
+                                "id": "10000",
+                                "statusCategory": {
+                                  "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/statuscategory/2",
+                                  "id": 2,
+                                  "key": "new",
+                                  "colorName": "blue-gray",
+                                  "name": "To Do"
+                                }
+                              },
+                              "components": [],
+                              "customfield_10050": null,
+                              "customfield_10051": null,
+                              "timeoriginalestimate": null,
+                              "customfield_10052": null,
+                              "customfield_10053": null,
+                              "description": {
+                                "version": 1,
+                                "type": "doc",
+                                "content": [
+                                  {
+                                    "type": "paragraph",
+                                    "content": [
+                                      {
+                                        "type": "text",
+                                        "text": "testing issues"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "customfield_10010": null,
+                              "customfield_10054": null,
+                              "customfield_10014": null,
+                              "customfield_10015": null,
+                              "customfield_10005": null,
+                              "customfield_10049": null,
+                              "customfield_10006": null,
+                              "customfield_10007": null,
+                              "security": null,
+                              "customfield_10008": null,
+                              "aggregatetimeestimate": null,
+                              "customfield_10009": null,
+                              "summary": "test issue to be creates",
+                              "creator": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "subtasks": [],
+                              "customfield_10040": null,
+                              "customfield_10041": null,
+                              "customfield_10042": null,
+                              "reporter": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "customfield_10043": null,
+                              "aggregateprogress": {
+                                "progress": 0,
+                                "total": 0
+                              },
+                              "customfield_10000": "{}",
+                              "customfield_10044": null,
+                              "customfield_10001": null,
+                              "customfield_10045": null,
+                              "customfield_10046": null,
+                              "customfield_10002": null,
+                              "customfield_10003": null,
+                              "customfield_10047": null,
+                              "customfield_10004": null,
+                              "customfield_10048": null,
+                              "customfield_10038": null,
+                              "customfield_10039": null,
+                              "environment": null,
+                              "duedate": null,
+                              "progress": {
+                                "progress": 0,
+                                "total": 0
+                              },
+                              "votes": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-2/votes",
+                                "votes": 0,
+                                "hasVoted": false
+                              }
+                            }
+                          },
+                          {
+                            "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+                            "id": "10000",
+                            "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/10000",
+                            "key": "STAC-1",
+                            "fields": {
+                              "statuscategorychangedate": "2021-03-22T09:36:23.216+1100",
+                              "issuetype": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issuetype/10001",
+                                "id": "10001",
+                                "description": "Functionality or a feature expressed as a user goal.",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+                                "name": "Story",
+                                "subtask": false,
+                                "avatarId": 10315,
+                                "hierarchyLevel": 0
+                              },
+                              "timespent": null,
+                              "customfield_10030": [],
+                              "project": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/project/10000",
+                                "id": "10000",
+                                "key": "STAC",
+                                "name": "StackGo",
+                                "projectTypeKey": "software",
+                                "simplified": false,
+                                "avatarUrls": {
+                                  "48x48": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?pid=10000&avatarId=10408",
+                                  "24x24": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10408",
+                                  "16x16": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10408",
+                                  "32x32": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10408"
+                                }
+                              },
+                              "customfield_10031": null,
+                              "customfield_10032": null,
+                              "fixVersions": [],
+                              "customfield_10033": null,
+                              "customfield_10034": null,
+                              "aggregatetimespent": null,
+                              "resolution": null,
+                              "customfield_10035": null,
+                              "customfield_10036": null,
+                              "customfield_10037": null,
+                              "customfield_10028": null,
+                              "customfield_10029": null,
+                              "resolutiondate": null,
+                              "workratio": -1,
+                              "watches": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-1/watchers",
+                                "watchCount": 1,
+                                "isWatching": true
+                              },
+                              "lastViewed": "2021-05-28T13:28:06.271+1000",
+                              "created": "2021-03-22T09:36:22.798+1100",
+                              "customfield_10020": null,
+                              "customfield_10021": null,
+                              "customfield_10022": null,
+                              "customfield_10023": null,
+                              "priority": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/priority/3",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/images/icons/priorities/medium.svg",
+                                "name": "Medium",
+                                "id": "3"
+                              },
+                              "customfield_10024": null,
+                              "customfield_10025": null,
+                              "labels": [
+                                "high"
+                              ],
+                              "customfield_10016": null,
+                              "customfield_10017": null,
+                              "customfield_10018": {
+                                "hasEpicLinkFieldDependency": false,
+                                "showField": false,
+                                "nonEditableReason": {
+                                  "reason": "PLUGIN_LICENSE_ERROR",
+                                  "message": "The Parent Link is only available to Jira Premium users."
+                                }
+                              },
+                              "customfield_10019": "0|hzzzzz:",
+                              "timeestimate": null,
+                              "aggregatetimeoriginalestimate": null,
+                              "versions": [],
+                              "issuelinks": [],
+                              "assignee": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "updated": "2021-03-22T09:36:22.798+1100",
+                              "status": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/status/10000",
+                                "description": "",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/",
+                                "name": "Backlog",
+                                "id": "10000",
+                                "statusCategory": {
+                                  "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/statuscategory/2",
+                                  "id": 2,
+                                  "key": "new",
+                                  "colorName": "blue-gray",
+                                  "name": "To Do"
+                                }
+                              },
+                              "components": [],
+                              "customfield_10050": null,
+                              "timeoriginalestimate": null,
+                              "customfield_10051": null,
+                              "customfield_10052": null,
+                              "description": {
+                                "version": 1,
+                                "type": "doc",
+                                "content": [
+                                  {
+                                    "type": "paragraph",
+                                    "content": [
+                                      {
+                                        "type": "text",
+                                        "text": "This is a test for the api to pull up"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "customfield_10053": null,
+                              "customfield_10054": null,
+                              "customfield_10010": null,
+                              "customfield_10014": null,
+                              "customfield_10015": null,
+                              "customfield_10049": null,
+                              "customfield_10005": null,
+                              "customfield_10006": null,
+                              "security": null,
+                              "customfield_10007": null,
+                              "customfield_10008": null,
+                              "aggregatetimeestimate": null,
+                              "customfield_10009": null,
+                              "summary": "Test issues ",
+                              "creator": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "subtasks": [],
+                              "customfield_10040": null,
+                              "customfield_10041": null,
+                              "customfield_10042": null,
+                              "reporter": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "customfield_10043": null,
+                              "aggregateprogress": {
+                                "progress": 0,
+                                "total": 0
+                              },
+                              "customfield_10000": "{}",
+                              "customfield_10044": null,
+                              "customfield_10001": null,
+                              "customfield_10045": null,
+                              "customfield_10002": null,
+                              "customfield_10046": null,
+                              "customfield_10047": null,
+                              "customfield_10003": null,
+                              "customfield_10004": null,
+                              "customfield_10048": null,
+                              "customfield_10038": null,
+                              "customfield_10039": null,
+                              "environment": null,
+                              "duedate": null,
+                              "progress": {
+                                "progress": 0,
+                                "total": 0
+                              },
+                              "votes": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-1/votes",
+                                "votes": 0,
+                                "hasVoted": false
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
                   }
                 }
               }
             },
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/HubspotProxyCalls-GetForms"
-                }
-              }
-            }
+            "description": "All results from the Atlassian platform are transparently passed as the response. See examples."
           }
         },
         "deprecated": false,
@@ -1127,8 +1689,24 @@
             "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
             "variables": {}
           }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "HubspotAppSlug",
+          "in": "path",
+          "required": true,
+          "description": "Atlassian app reference"
+        }
+      ]
     },
     "/pipedrive/auth/{appSlug}": {
       "get": {
