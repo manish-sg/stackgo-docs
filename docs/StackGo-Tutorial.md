@@ -1,27 +1,27 @@
 #  📖 StackGo-Tutorial
 
-This is a guided tour of StackGo capabilites, we expect you to have read through the [StackGo Philosophy](Docs Home.md) before attempting this guided tour.
+This is a guided tour of StackGo capabilities, we expect you to have read through the [StackGo Philosophy](Docs Home.md) before attempting this guided tour.
 
-Open all links in a new tab so you can easily refer back to the next steps. 
+Open all links in a new tab so you can easily refer to the next steps. 
 
 ### Step 0: Sign up for StackGo
 Follow along [here](SignUp-StackGo.md)
 
-### Step 1: Generate some `SaaS platform`credentials
+### Step 1: Generate some `SaaS platform` credentials
 
 [Getting Started with Hubspot](https://docs.stackgo.io/docs/stackgo-docs/docs/GettingStarted-Hubspot.md#1-sign-up-for-a-developer-account---httpsdevelopershubspotcom) - Step 1
 
-Make sure to add `contacts` as a scope
+Add **only** `contacts` as a scope
 
 ### Step 2: Add credentials to StackGo to configure your connection
 [Getting Started with Hubspot](https://docs.stackgo.io/docs/stackgo-docs/docs/GettingStarted-Hubspot.md#2-pass-credentials-to-stackgo) - Step 2
 
 Ensure you select `contacts` scope in the StackGo configuration and leave the `redirect url` empty. 
 
-Make a note of your `appSlug` for use in later steps.
+Make a note of your `appSlug` for later steps.
 
 ### Step 3: Generate your StackGo access token
-Vist the docs at [`Fetch StackGo Tokens`](https://docs.stackgo.io/docs/stackgo-docs/All-OpenApi3Json.json/paths/~1oauth~1token/post) and then add your add `client_id` and `client_secret` to the body in the right panel and hit `Send`.
+Visit the docs at [`Fetch StackGo Tokens`](https://docs.stackgo.io/docs/stackgo-docs/All-OpenApi3Json.json/paths/~1oauth~1token/post) and then add your add `client_id` and `client_secret` to the body in the `Try it now` panel and hit `Send`.
 
 #### Sample Response:
 
@@ -33,9 +33,9 @@ Vist the docs at [`Fetch StackGo Tokens`](https://docs.stackgo.io/docs/stackgo-d
 }
 ```
 
-Store the value for the `access_token` perhaps in text file or password manager. 
+Store the value for the `access_token` perhaps in a text file or password manager. 
 
-### Step 4: Create a 'Authorization Link` for your hubspot
+### Step 4: Create an 'Authorization Link` for your Hubspot
 
 Visit the [Hubspot Generate Link](https://docs.stackgo.io/docs/stackgo-docs/All-OpenApi3Json.json/paths/~1hubspot~1auth~1%7BappSlug%7D/get) and in the rignt pane add any string as `userForeighIdentifer` and the `appSlug` from Step 2. Make a note of the `userForeighIdentifer` for the onward steps.
 
@@ -53,7 +53,7 @@ Visit the [Hubspot Generate Link](https://docs.stackgo.io/docs/stackgo-docs/All-
 
 ```json
 {
-  "message": "User Regsitered",
+  "message": "User Registered",
   "userForeignIdentifier": "test@test.com"
 }
 ```
@@ -61,7 +61,7 @@ Visit the [Hubspot Generate Link](https://docs.stackgo.io/docs/stackgo-docs/All-
 ### Step 6: Make proxy calls via StackGo to Hubspot
 Visit the [Hubspot proxy calls] page(https://docs.stackgo.io/docs/stackgo-docs/All-OpenApi3Json.json/paths/~1raw~1%7BHubspotAppSlug%7D/post).
 
-In the right hand side panel update the body to reflect your `appSlug` in the path param. In the body of the API call update `userForeignIdentifier`, the url `method` to `GET` and `url` to `https://api.hubapi.com/forms/v2/forms`  and hit `Send`
+In the `Try-it-now hand side panel update the body to reflect your `appSlug` as the path parameter. In the body of the API call update `userForeignIdentifier`, the url `method` to `GET` and `url` to `https://api.hubapi.com/forms/v2/forms`  and hit `Send`
 
 #### Sample Response 
 
