@@ -23,7 +23,7 @@ Interested in learning more? Please work through our tutorial for [a tutorial](l
 While helping customers with the their SaaS product integrations we worked with a large number of SaaS platforms that have similar offerings within a vertical. However due to differing views in API design and product terminology they refer to the same canonical elements of a domain with differing terminology and support different operations. 
 Since StackGo is the nexus off all oAuth based connections as per the `Managed Authentication` offereing we added a layer of API translation that creates a notional standard for common resources within a vertical. For example, with CRMs, StackGo can define a standard for `Contact` and define CRUD operations and fields that can be applied to any CRM.
 
-Want to see it in action? Here is an article that works its way through [an example](example)
+Want to see it in action? Here is an article that works its way through [an example](Unified-API-An-early-look.md)
 
 #### FaaS - Function as a Service
 
