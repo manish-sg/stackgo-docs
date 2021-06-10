@@ -30,19 +30,46 @@ APIs provided by SaaS platforms are the elemental operations for building workfl
 
 Ready to explore? Please get in [touch](link)
 
-### Technical Architecture
+### Technical Architecture (High Level)
 
 ![../assets/sg_philosophy/StackGoasaService.jpg](../assets/sg_philosophy/StackGoasaService.jpg)
 
+StackGo at its core is an API middleware solution and it helps shield you application and devlopers from the complexity of the API standards and authentication systems. In doing so, stackgo offers an alternative approach to managing authentication with third party systems by creating a secure standardised approach. By offloading aspects of token managments and the power up from the unified apis and faas stackgo's offerings will boost your team's productivity without sacrificing the quality.
 
 ### Key Concepts
 
 From a technical implementation point of view there are a few concepts to introduce to make the most of the StackGo platform.
 
+Note: Here we use the generic term `SaaS Platform` to represent any modren api eneabled multitenated SaaS offering such as Shopify, Salesforce, Xero and others.
 
-User Foreign Identifer `userForeignIdentifer`
+The basic steps to get started are:
 
-App Credentials Identifier `appSlug`
+- Register a developer acccount on the SaaS platform
+
+- Generate oAuth credentials (`client id`, `client secret,` `permissions`
+
+- Sign up for StackGo and configure the connector for your SaaS platfrom with credentials from the previous step
+
+- StackGo will generate a custom `redirect url`, register this url with the SaaS platform
+
+- Follow `Generate Authorization Link` API to generate an installation link. You might to have access to a trial or developer version of the SaaS platform to use the link.
+
+- Complete the app installation via StackGo via the consent screen and then you can you the `proxy calls` api to start transacting data as per the API documentation
+
+Example of a google consent screen:
+
+![../assets/sg_philosophy/GoogleOAuthConsent.png](../assets/sg_philosophy/GoogleOAuthConsent.png)
+
+
+#### App Credentials Identifier `appSlug`
+Each set of credentials 
+
+
+#### User Foreign Identifer `userForeignIdentifer`
+
+
+
+
 
 
 ### Tutorial 
