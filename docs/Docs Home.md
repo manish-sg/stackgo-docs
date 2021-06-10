@@ -12,6 +12,7 @@ We have also written extensivley about how to find your ideal use-case for build
 
 #### Managed Authentication 
 
+StackGo's core value proposition is to enable SaaS providers to allow their users to connect the SaaS platforms they already use to create seamless user experince.
 All SaaS product integrations require authorization and authentication before any data can be transacted, this is where managed authentication comes in! 
 StackGo offers its managed authentication to allow developers to get started quickly with oAuth based platforms with a standardised approache that is state of the art and secure implementation. Hence developers can focus on building features for customers rather than being bogged in the minutiae of authentication. It also reduces the cost of experimentation and starting integrations with new platforms.  
 
@@ -46,7 +47,7 @@ The basic steps to get started are:
 
 - Register a developer acccount on the SaaS platform
 
-- Generate oAuth credentials (`client id`, `client secret,` `permissions`
+- Generate oAuth credentials (`client id`, `client secret,` `permissions`)
 
 - Sign up for StackGo and configure the connector for your SaaS platfrom with credentials from the previous step
 
@@ -62,18 +63,16 @@ Example of a google consent screen:
 
 
 #### App Credentials Identifier `appSlug`
-Each set of credentials 
+Each set of credentials  (`client id`, `client secret,` `permissions`) generated from the SaaS platform are referenced with an identifier in StackGo called the `appSlug`. This is important since it allows developers to maintain several integrations for each SaaS platform which is important to allow for different credentials for each enviroment (dev/test/prod) or for custom integrations differnet clients. 
 
 
 #### User Foreign Identifer `userForeignIdentifer`
-
-
-
-
+StackGo allows developers to register multiple users from their application to connect with their instance of the SaaS platfrom. E.g. Offering user the ability to connect to their shopify accounts and sync orders. To enable this, StackGo API consumers need to assign an user identifier for each API call they make. This usually takes the form of a indentifier that is already in the system that denotes a unique tenant such a `email`, `user id`, `organization id`, `uuid` and so on. 
 
 
 ### Tutorial 
-Follow along for a guided tour on how to use StackGo to make SaaS integrations easier. 
+Can't wait to get started? 
+[Follow along for a guided tour on how to use StackGo to make SaaS integrations easier](tutorial). 
 
 
 
