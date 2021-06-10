@@ -1,9 +1,9 @@
 # StackGo Philosophy 🧠
 
 
-SaaS platforms are more ubiquitous than ever. They’re growing in popularity in an increasingly congested and finely stratified SaaS market. Product integrations into SaaS platforms can be a channel for growth, improving customer retention, creating seamless customer journeys and a hotbed for innovation on your core offering. We have written a lot about the importance of SaaS integrations on our blog, [feel free to check out this post](https://stackgo.io/software-marketplaces-for-growth/).
+SaaS platforms are more ubiquitous than ever. They’re growing in popularity in an increasingly congested and finely stratified SaaS market. Product integrations into SaaS platforms can be a channel for growth, driver for improving customer retention and a hotbed for innovation on your core offering. We have written a lot about the importance of SaaS integrations on our blog, [feel free to check out this post](https://stackgo.io/software-marketplaces-for-growth/).
 
-At StackGo we realise that devlopment time is a limiting factor in how many product integrations get built. Since each platform has its own data model, oAuth implementation and mode of operations. Therefore we are deeply commited to our vision of an ecosystem of developer tools that boost effiancy by a factor of 10 by reducing to allow for faster iterations and greater agilty. 
+At StackGo we realise that devlopment resources are a limiting factor in how many product integrations get shipped.  Each platform has its own data model, oAuth implementation and mode of operation. Therefore we are deeply commited to our vision of an ecosystem of developer tools that boost develoepr efficacy and efficiancy by reducing time to go-live. 
 
 We have also written extensivley about how to find your ideal use-case for building product integrations for product and technology leaders. Please see [this blog for more details](https://stackgo.io/data-integration-and-saas-marketplaces/) 
 
@@ -15,15 +15,15 @@ We have also written extensivley about how to find your ideal use-case for build
 <!-- theme: success -->
 > StackGo's core value proposition is to enable SaaS providers to allow their users to connect the SaaS platforms they already use to create seamless user experince.
 
-All SaaS product integrations require authorization and authentication before any data can be transacted, this is where managed authentication comes in! 
-StackGo offers its managed authentication to allow developers to get started quickly with oAuth based platforms with a standardised approache that is state of the art and secure implementation. Hence developers can focus on building features for customers rather than being bogged in the minutiae of authentication. It also reduces the cost of experimentation and starting integrations with new platforms.  
+All SaaS product integrations require authorization and authentication before any data can be transacted, this is where managed authentication comes in. 
+StackGo offers its managed authentication capability to allow developers to get started quickly with oAuth based platforms. Using StackGo developers can leverage a standardised approach that is state of the art and secure oAuth client implementation. Hence developers can focus on building features for the end customers rather than being bogged in the minutiae of enabling these connections. It also reduces the cost of experimentation and barried to starting integrations with new platforms.  
 
 Interested in learning more? Please work through our tutorial for [a tutorial](linik)
 
 #### Unified APIs
 
-While helping customers with the their SaaS product integrations we worked with a large number of SaaS platforms that have similar offerings within a vertical. However due to differing views in API design and product terminology they refer to the same canonical elements of a domain with differing terminology and support different operations. 
-Since StackGo is the nexus off all oAuth based connections as per the `Managed Authentication` offereing we added a layer of API translation that creates a notional standard for common resources within a vertical. For example, with CRMs, StackGo can define a standard for `Contact` and define CRUD operations and fields that can be applied to any CRM.
+While helping customers with the their SaaS product integrations we integrated with a large number of SaaS platforms that have similar offerings within a vertical. However due to differing views in API design and product terminology they refer to the same canonical elements with differing terminology and support different operations. 
+Since StackGo is the nexus off all oAuth based connections, we added a layer of API translation that creates a notional standard for common resources within SaaS platforms of a vertical. For example, with CRMs, StackGo can define a standard for `Contact` and define CRUD operations and fields that can be applied to any CRM.
 
 > Want to see it in action? Here is an article that works its way through [an example](Unified-API-An-early-look.md)
 
