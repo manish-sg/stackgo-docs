@@ -23,7 +23,7 @@ StackGo offers its managed authentication capability to allow developers to get 
 #### Unified APIs
 
 While helping customers with the their SaaS product integrations we integrated with a large number of SaaS platforms that have similar offerings within a vertical. However due to differing views in API design and product terminology they refer to the same canonical elements with differing terminology and support different operations. 
-Since StackGo is the nexus off all oAuth based connections, we added a layer of API translation that creates a notional standard for common resources within SaaS platforms of a vertical. For example, with CRMs, StackGo can define a standard for `Contact` and define CRUD operations and fields that can be applied to any CRM.
+Since StackGo is the nexus off all oAuth based connections, we added a layer of API translation that creates a notional standard for common resources within SaaS platforms of a vertical. For example, with CRMs, StackGo can define a standard for `Contacts` and define CRUD operations that can be applied to any CRM.
 
 > Want to see it in action? Here is an article that works its way through [an example](Unified-API-An-early-look.md)
 
