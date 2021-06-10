@@ -29,7 +29,7 @@ Want to see it in action? Here is an article that works its way through [an exam
 
 APIs provided by SaaS platforms are the elemental operations for building workflows for SaaS product integrations. Often times a number of these operations need to be strung together to create a workflow that adds value to the end-users journey. With our `FaaS` offering we provide an easy to use interface to compose powerful workflows without having a large burden of changes on your existing code bases and having a very desireable de-coupliing of integration logic code from main applicaiton.
 
-Ready to explore? Please get in [touch](link)
+Ready to explore? Please get in [touch](mailto:team@stackgo.io)
 
 ### Technical Architecture (High Level)
 
