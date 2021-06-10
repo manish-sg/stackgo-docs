@@ -18,7 +18,7 @@ We have also written extensivley about how to find your ideal use-case for build
 All SaaS product integrations require authorization and authentication before any data can be transacted, this is where managed authentication comes in. 
 StackGo offers its managed authentication capability to allow developers to get started quickly with oAuth based platforms. Using StackGo developers can leverage a standardised approach that is state of the art and secure oAuth client implementation. Hence developers can focus on building features for the end customers rather than being bogged in the minutiae of enabling these connections. It also reduces the cost of experimentation and barried to starting integrations with new platforms.  
 
-Interested in learning more? Please work through our tutorial for [a walkthrough](StackGo-Tutorial.md)
+> Interested in learning more? Please work through our tutorial for [a walkthrough of our offereing](StackGo-Tutorial.md)
 
 #### Unified APIs
 
