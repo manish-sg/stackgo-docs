@@ -16,7 +16,7 @@ See below for an example of a `get contact` API call made to pipdedrive and hubs
 
 If you would like to have a deeper look at this preview, please email us team@stackgo.io
 
-## Hubsport 
+## Hubspot 
 
 
 ### Request
