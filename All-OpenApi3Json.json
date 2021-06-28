@@ -233,6 +233,111 @@
         }
       ]
     },
+    "/servicenow/auth/{appSlug}": {
+      "get": {
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Service Now credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
+        "summary": "Service Now Install Link",
+        "operationId": "AtlassianGetInstallLink",
+        "parameters": [
+          {
+            "name": "userForeignIdentifier",
+            "in": "query",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "m3@m.com"
+            },
+            "required": true,
+            "description": "Unique reference to a \"user\" in your application context. Can be a email address, UUID, Tenancy ID or similar"
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "description": "If true, it automatically redirects the caller to the SaaS platform. In this case Atlassian",
+            "name": "redirect"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {StackGo Token}",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response for contains a customised intallation link for the `userForeignIdentifier`. This response can be used in the `connected accounts` or the `integrations` page of your app inviting the users to authorise your application to access their tools.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "userForeignIdentifier": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "UUID": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "userForeignIdentifier",
+                    "UUID"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "url": "https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=G1kmfeIJWMzIblHLPNHShefGNgau2P47&scope=read%3Ajira-user%20read%3Ajira-work%20read%3Aconfluence-content.all%20read%3Aconfluence-content.summary%20manage%3Ajira-webhook%20manage%3Ajira-project%20offline_access&redirect_uri=https%3A%2F%2Fapi-dot-stackgo-300922.ts.r.appspot.com%2Fatlassian%2Fatl_dev-965a9683-a2bf-420b-9551-dcd3a62bb7b8%2Fcallback&state=stackgo-prod&response_type=code&prompt=consent",
+                      "userForeignIdentifier": "stackgo-prod",
+                      "UUID": "965a9683-a2bf-420b-9551-dcd3a62bb7b8"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
+        ],
+        "tags": [
+          "Service Now"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "appSlug",
+          "in": "path",
+          "required": true,
+          "description": "SaaS platform identifier from StackGo"
+        }
+      ]
+    },
     "/atlassian/proxy/{AtlassianAppSlug}": {
       "post": {
         "description": "Use this endpoint for proxying calls to the Atlassian platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developer.atlassian.com` can be used in this way. ",
@@ -888,6 +993,663 @@
           "in": "path",
           "required": true,
           "description": "Atlassian app reference"
+        }
+      ]
+    },
+    "/atlassian/proxy/{ServiceNowAppSlug} - copy": {
+      "post": {
+        "description": "Use this endpoint for proxying calls to the Service Now platform using credentials referenced by the `ServiceNowAppSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developer.servicenow.com/dev.do` can be used in this way. ",
+        "summary": "Service Now proxy calls",
+        "operationId": "AtlassianproxycallsCopy",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "Bearer {StackGo Token}"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "See [here](https://docs.stackgo.io/docs/stackgo-docs/All-OpenApi3Json.json/paths/~1oauth~1token/post) on how to generate the StackGo tokens"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "type": "object",
+                "minProperties": 0,
+                "description": "",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "example": "GET",
+                    "description": "HTTP method like GET,POST etc.",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "PATCH",
+                      "DELETE",
+                      "HEAD",
+                      "OPTIONS"
+                    ]
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://stackgo.atlassian.net/wiki/rest/api/content/163843?expand=body.storage",
+                    "description": "The actual `url` endpoint you would like to access"
+                  },
+                  "userForeignIdentifier": {
+                    "type": "string",
+                    "example": "stackgo-prod",
+                    "description": "User reference"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "Optional. Provide the body of the request for 'POST` or `PUT` calls"
+                  },
+                  "headers": {
+                    "type": "string",
+                    "description": "Optional. To pass custom headers"
+                  },
+                  "product": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "method",
+                  "url",
+                  "userForeignIdentifier",
+                  "product"
+                ]
+              },
+              "examples": {
+                "example call to jira": {
+                  "value": {
+                    "method": "GET",
+                    "userForeignIdentifier": "ff29fea1-82fa-482d-bed2-226e4ad39f21",
+                    "url": "rest/api/3/search?jql=project%20%3D%20STAC&feilds=*all",
+                    "product": "jira"
+                  }
+                }
+              }
+            }
+          },
+          "required": false,
+          "description": "The request body is basically a structure to describe a HTTP call you would like to execute against the Service Now instance.  "
+        },
+        "responses": {
+          "200": {
+            "description": "StackGo will check for tokens matching `userForeignIdentifier`, `appSlug` and then place a request to Atlassian. Any results or errors are transparently passed to the the API consumer. ",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "key": "value"
+                      }
+                    }
+                  },
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "Data recieved from the endpoint"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": {
+                        "id": "163843",
+                        "type": "page",
+                        "status": "current",
+                        "title": "stackgo",
+                        "macroRenderedOutput": {},
+                        "body": {
+                          "storage": {
+                            "value": "<ac:layout><ac:layout-section ac:type=\"single\"><ac:layout-cell><ac:structured-macro ac:macro-id=\"5da7fd26-ee1a-4fe5-a582-dcf9bfaf8f45\" ac:name=\"tip\" ac:schema-version=\"1\"><ac:rich-text-body><p>Welcome to your first space. Go ahead, edit and customize this home page any way you like. We've added some sample content to get you started.</p></ac:rich-text-body></ac:structured-macro></ac:layout-cell></ac:layout-section><ac:layout-section ac:type=\"single\"><ac:layout-cell><p><ac:image><ri:attachment ri:filename=\"peak.jpeg\" /></ac:image></p><p>&nbsp;</p></ac:layout-cell></ac:layout-section><ac:layout-section ac:type=\"two_right_sidebar\"><ac:layout-cell><hr /><h1><strong>Goal</strong></h1><h2><em>Your space homepage should summarize what the space is for, and provide links to key resources for your team.&nbsp;</em></h2><hr /><p>&nbsp;</p><h1><strong>Core team</strong></h1><table><tbody><tr><td><p style=\"text-align: center;\"><ac:image ac:thumbnail=\"true\" ac:width=\"100\"><ri:attachment ri:filename=\"Harvey.jpg\" /></ac:image></p><p style=\"text-align: center;\"><strong>Harvey Honner-white<br /></strong>Team Lead<strong>&nbsp;</strong></p></td><td><p style=\"text-align: center;\"><ac:image ac:thumbnail=\"true\" ac:width=\"100\"><ri:attachment ri:filename=\"Alana.jpg\" /></ac:image></p><p style=\"text-align: center;\"><strong>Alana Baczewski<br />&nbsp;</strong>Tech Lead</p></td><td><p style=\"text-align: center;\"><ac:image ac:thumbnail=\"true\" ac:width=\"100\"><ri:attachment ri:filename=\"Sameer.jpg\" /></ac:image></p><p style=\"text-align: center;\"><strong>Sameer Farrell<br />&nbsp;</strong>Marketing</p></td><td><p style=\"text-align: center;\"><ac:image ac:thumbnail=\"true\" ac:width=\"100\"><ri:attachment ri:filename=\"Cassie.jpg\" /></ac:image></p><p style=\"text-align: center;\"><strong>Mia Bednarczyk<br />&nbsp;</strong>Recruitment</p></td></tr></tbody></table><p>&nbsp;</p><h1><strong>Roadmap</strong></h1><p>You can edit this roadmap or create a new one by adding the Roadmap Planner macro from the Insert menu. Link your Confluence pages to each bar to add visibility, and find more tips by reading the Atlassian blog:&nbsp;<a href=\"http://blogs.atlassian.com/2015/01/roadmap-planner-macro/\">Plan better in 2015 with the Roadmap Planner macro</a>.</p><p><ac:structured-macro ac:macro-id=\"acab4a3d-dde3-4e22-a912-ce9f886e3e91\" ac:name=\"roadmap\" ac:schema-version=\"1\"><ac:parameter ac:name=\"maplinks\" /><ac:parameter ac:name=\"timeline\">true</ac:parameter><ac:parameter ac:name=\"pagelinks\" /><ac:parameter ac:name=\"source\">%7B%22title%22%3A%22Roadmap%20Planner%22%2C%22timeline%22%3A%7B%22startDate%22%3A%222015-06-01%2000%3A00%3A00%22%2C%22endDate%22%3A%222015-12-31%2000%3A00%3A00%22%2C%22displayOption%22%3A%22MONTH%22%7D%2C%22lanes%22%3A%5B%7B%22title%22%3A%22Marketing%22%2C%22color%22%3A%7B%22lane%22%3A%22%23f15c75%22%2C%22bar%22%3A%22%23f58598%22%2C%22text%22%3A%22%23ffffff%22%2C%22count%22%3A1%7D%2C%22bars%22%3A%5B%7B%22title%22%3A%22Social%20campaign%22%2C%22description%22%3A%22Add%20a%20description%20to%20your%20bars%20here.%22%2C%22startDate%22%3A%222015-07-30%2011%3A10%3A05%22%2C%22duration%22%3A3.6435643564356437%2C%22rowIndex%22%3A0%2C%22id%22%3A%22e703c6a8-1649-4d20-9ccf-2c7a8698e385%22%2C%22pageLink%22%3A%7B%7D%7D%2C%7B%22title%22%3A%22Website%20development%22%2C%22description%22%3A%22Add%20a%20description%20to%20your%20bars%20here.%22%2C%22startDate%22%3A%222015-07-17%2006%3A24%3A57%22%2C%22duration%22%3A3.3069306930693068%2C%22rowIndex%22%3A1%2C%22id%22%3A%22655d454d-b701-4584-a301-9ea0bb86ed32%22%2C%22pageLink%22%3A%7B%7D%7D%2C%7B%22rowIndex%22%3A2%2C%22startDate%22%3A%222015-06-01%2000%3A00%3A00%22%2C%22id%22%3A%22c420ef33-ae28-4828-958f-8a9d793153b3%22%2C%22title%22%3A%22Crowdfunding%20campaign%22%2C%22description%22%3A%22Add%20a%20description%20to%20your%20bars%20here.%22%2C%22duration%22%3A2.5544554455445545%2C%22pageLink%22%3A%7B%7D%7D%5D%7D%2C%7B%22title%22%3A%22People%22%2C%22color%22%3A%7B%22lane%22%3A%22%23654982%22%2C%22bar%22%3A%22%238c77a1%22%2C%22text%22%3A%22%23ffffff%22%2C%22count%22%3A1%7D%2C%22bars%22%3A%5B%7B%22title%22%3A%22Recruitment%22%2C%22description%22%3A%22%22%2C%22startDate%22%3A%222015-06-01%2000%3A00%3A00%22%2C%22duration%22%3A2.5%2C%22rowIndex%22%3A0%2C%22id%22%3A%221230bab8-718c-47da-903a-2cbdcb220d97%22%2C%22pageLink%22%3A%7B%7D%7D%2C%7B%22rowIndex%22%3A0%2C%22startDate%22%3A%222015-08-17%2013%3A46%3A55%22%2C%22id%22%3A%228639d09c-59d1-4d1f-ad91-c78f04b20135%22%2C%22title%22%3A%22Assessment%20Period%22%2C%22description%22%3A%22%22%2C%22duration%22%3A2.910891089108911%2C%22pageLink%22%3A%7B%7D%7D%2C%7B%22rowIndex%22%3A1%2C%22startDate%22%3A%222015-09-01%2021%3A23%3A10%22%2C%22id%22%3A%22802b53f7-ba66-4415-984d-efef93b4caec%22%2C%22title%22%3A%22Training%22%2C%22description%22%3A%22%22%2C%22duration%22%3A2.5841584158415842%2C%22pageLink%22%3A%7B%7D%7D%2C%7B%22rowIndex%22%3A0%2C%22startDate%22%3A%222015-11-15%2006%3A10%3A41%22%2C%22id%22%3A%22502fac56-3849-415f-b412-af27c39229b7%22%2C%22title%22%3A%22Finalisation%22%2C%22description%22%3A%22%22%2C%22duration%22%3A1.4356435643564356%2C%22pageLink%22%3A%7B%7D%7D%5D%7D%2C%7B%22title%22%3A%22Product%22%2C%22color%22%3A%7B%22lane%22%3A%22%233b7fc4%22%2C%22bar%22%3A%22%236c9fd3%22%2C%22text%22%3A%22%23ffffff%22%2C%22count%22%3A1%7D%2C%22bars%22%3A%5B%7B%22rowIndex%22%3A0%2C%22startDate%22%3A%222015-06-24%2004%3A02%3A22%22%2C%22id%22%3A%2200ada54b-0998-41a5-aa98-712ecdec8c7f%22%2C%22title%22%3A%22Planning%22%2C%22description%22%3A%22%22%2C%22duration%22%3A2.1782178217821784%2C%22pageLink%22%3A%7B%7D%7D%2C%7B%22rowIndex%22%3A0%2C%22startDate%22%3A%222015-08-31%2001%3A54%3A03%22%2C%22id%22%3A%2271967f2c-f3ab-4871-aaf5-7cf31389e62f%22%2C%22title%22%3A%22Development%22%2C%22description%22%3A%22%22%2C%22duration%22%3A1.9207920792079207%2C%22pageLink%22%3A%7B%7D%7D%2C%7B%22rowIndex%22%3A0%2C%22startDate%22%3A%222015-10-29%2013%3A04%3A09%22%2C%22id%22%3A%22d76ac773-3ee7-495b-9d7f-1daf267dc58c%22%2C%22title%22%3A%22Testing%22%2C%22description%22%3A%22%22%2C%22duration%22%3A1%2C%22pageLink%22%3A%7B%7D%7D%2C%7B%22rowIndex%22%3A0%2C%22startDate%22%3A%222015-11-30%2002%3A36%3A49%22%2C%22id%22%3A%224f584dc6-63b8-4efa-a98e-a5d7bbe9910e%22%2C%22title%22%3A%22Deploy%22%2C%22description%22%3A%22%22%2C%22duration%22%3A1.0297029702970297%2C%22pageLink%22%3A%7B%7D%7D%5D%7D%5D%2C%22markers%22%3A%5B%7B%22title%22%3A%22Yearly%20Finalisation%22%2C%22markerDate%22%3A%222015-11-29%2012%3A21%3A23%22%7D%5D%7D</ac:parameter><ac:parameter ac:name=\"title\">Roadmap%20Planner</ac:parameter><ac:parameter ac:name=\"hash\">f0477dfac6f6ca380d8c5f2f44041947</ac:parameter></ac:structured-macro></p><p>&nbsp;</p><h1><strong>Know your spaces</strong>&nbsp;</h1><p>Everything your team is working on - meeting notes and agendas, project plans and timelines, technical documentation and more - is located in a space; it's home base for your team.</p><p>A small team should plan to have a space for the team, and a space for each big project. If you'll be working in Confluence with several other teams and departments, we recommend a space for each team as well as a space for each major cross-team project. The key is to think of a space as the container that holds all the important stuff - like pages, files, and blog posts - a team, group, or project needs to work.</p><h1><strong>Know your pages</strong></h1><p>If you're working on something related to your team - project plans, product requirements, blog posts, internal communications, you name it - create and store it in a Confluence page. Confluence pages offer a lot of flexibility in creating and storing information, and there are a number of useful page templates included to get you started, like the&nbsp;meeting notes template. Your spaces should be filled with pages that document your business processes, outline your plans, contain your files, and report on your progress. The more you learn to do in Confluence (adding tables and graphs, or embedding video and links are great places to start), the more engaging and helpful your pages will become.</p><p>Learn more by reading&nbsp;<a href=\"https://www.atlassian.com/collaboration/confluence-organize-work-in-spaces\">Confluence 101: organize your work in spaces</a></p><p>&nbsp;</p><hr /></ac:layout-cell><ac:layout-cell><h1><strong>Quick navigation</strong></h1><p>When you create new pages in this space, they'll appear here automatically.</p><p><ac:structured-macro ac:macro-id=\"8ca379f2-ea2a-4fbb-bf4a-77619f9875ed\" ac:name=\"children\" ac:schema-version=\"2\" /></p><h1><strong>Useful links</strong></h1><table><tbody><tr><th>Link</th><th>Description</th></tr><tr><td><a href=\"https://www.atlassian.com/collaboration/confluence-organize-work-in-spaces\">Confluence 101: organize your work in spaces</a></td><td><p>Chances are, the information you need to do your job lives in multiple places. Word docs, Evernote files, email, PDFs, even Post-it notes. It's scattered among different systems. And to make matters worse,&nbsp;<em>the stuff your teammates need is equally siloed</em>. If information had feelings, it would be lonely.</p><p>But with&nbsp;Confluence, you can bring all that information into one place.</p></td></tr><tr><td><a href=\"https://www.atlassian.com/collaboration/confluence-discuss-work-with-your-team\">Confluence 101: discuss work with your team</a></td><td>Getting a project outlined and adding the right content are just the first steps. Now it's time for your team to weigh in.&nbsp;Confluence&nbsp;makes it easy to discuss your work - with your team, your boss, or your entire company - in the same place where you organized and created it.</td></tr><tr><td colspan=\"1\"><a href=\"https://www.atlassian.com/collaboration/confluence-create-content-with-pages\">Confluence 101: create content with pages</a></td><td colspan=\"1\">Think of pages as a New Age &quot;document.&quot; If Word docs were rotary phones, Confluence pages would be smart phones. A smart phone still makes calls (like their rotary counterparts), but it can do so much more than that</td></tr></tbody></table><p><strong style=\"font-size: 24.0px;line-height: 1.25;\"><br /></strong></p><p><strong style=\"font-size: 24.0px;line-height: 1.25;\">Tasks</strong></p><table><tbody><tr><td><ac:task-list>\n<ac:task>\n<ac:task-id>59</ac:task-id>\n<ac:task-status>incomplete</ac:task-status>\n<ac:task-body><a href=\"https://confluence.atlassian.com/x/NgszKw\">Customize the name, colour, and icon of Confluence</a>.</ac:task-body>\n</ac:task>\n<ac:task>\n<ac:task-id>56</ac:task-id>\n<ac:task-status>incomplete</ac:task-status>\n<ac:task-body>Decide who can see and edit this space or a specific page by clicking the <ac:image><ri:attachment ri:filename=\"lock-icon.png\" /></ac:image> icon. Learn more about <a href=\"https://confluence.atlassian.com/x/liAC\">Page Restrictions</a> and <a href=\"https://confluence.atlassian.com/x/ASEC\">Space Permissions</a>.</ac:task-body>\n</ac:task>\n<ac:task>\n<ac:task-id>57</ac:task-id>\n<ac:task-status>incomplete</ac:task-status>\n<ac:task-body>Try adding an <a href=\"https://confluence.atlassian.com/x/2yAC\">inline comment</a> by highlighting some text and click the comment icon.</ac:task-body>\n</ac:task>\n<ac:task>\n<ac:task-id>58</ac:task-id>\n<ac:task-status>incomplete</ac:task-status>\n<ac:task-body>Learn more about <a href=\"https://confluence.atlassian.com/x/SRwC\">inviting your team to Confluence</a>.</ac:task-body>\n</ac:task>\n</ac:task-list>\n</td></tr></tbody></table></ac:layout-cell></ac:layout-section></ac:layout>",
+                            "representation": "storage",
+                            "embeddedContent": [],
+                            "_expandable": {
+                              "content": "/rest/api/content/163843"
+                            }
+                          },
+                          "_expandable": {
+                            "editor": "",
+                            "atlas_doc_format": "",
+                            "view": "",
+                            "export_view": "",
+                            "styled_view": "",
+                            "dynamic": "",
+                            "editor2": "",
+                            "anonymous_export_view": ""
+                          }
+                        },
+                        "extensions": {
+                          "position": "none"
+                        },
+                        "_expandable": {
+                          "childTypes": "",
+                          "container": "/rest/api/space/STACKGO",
+                          "metadata": "",
+                          "operations": "",
+                          "schedulePublishDate": "",
+                          "children": "/rest/api/content/163843/child",
+                          "restrictions": "/rest/api/content/163843/restriction/byOperation",
+                          "history": "/rest/api/content/163843/history",
+                          "ancestors": "",
+                          "version": "",
+                          "descendants": "/rest/api/content/163843/descendant",
+                          "space": "/rest/api/space/STACKGO"
+                        },
+                        "_links": {
+                          "editui": "/pages/resumedraft.action?draftId=163843",
+                          "webui": "/spaces/STACKGO/overview",
+                          "context": "/wiki",
+                          "self": "https://stackgo.atlassian.net/wiki/rest/api/content/163843",
+                          "tinyui": "/x/A4AC",
+                          "collection": "/rest/api/content",
+                          "base": "https://stackgo.atlassian.net/wiki"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "key"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "key": "value"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "eaxmple response": {
+                    "value": {
+                      "data": {
+                        "expand": "schema,names",
+                        "startAt": 0,
+                        "maxResults": 50,
+                        "total": 2,
+                        "issues": [
+                          {
+                            "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+                            "id": "10001",
+                            "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/10001",
+                            "key": "STAC-2",
+                            "fields": {
+                              "statuscategorychangedate": "2021-03-22T09:44:41.884+1100",
+                              "issuetype": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issuetype/10001",
+                                "id": "10001",
+                                "description": "Functionality or a feature expressed as a user goal.",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+                                "name": "Story",
+                                "subtask": false,
+                                "avatarId": 10315,
+                                "hierarchyLevel": 0
+                              },
+                              "timespent": null,
+                              "customfield_10030": [],
+                              "project": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/project/10000",
+                                "id": "10000",
+                                "key": "STAC",
+                                "name": "StackGo",
+                                "projectTypeKey": "software",
+                                "simplified": false,
+                                "avatarUrls": {
+                                  "48x48": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?pid=10000&avatarId=10408",
+                                  "24x24": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10408",
+                                  "16x16": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10408",
+                                  "32x32": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10408"
+                                }
+                              },
+                              "customfield_10031": null,
+                              "customfield_10032": null,
+                              "fixVersions": [],
+                              "customfield_10033": null,
+                              "customfield_10034": null,
+                              "aggregatetimespent": null,
+                              "resolution": null,
+                              "customfield_10035": null,
+                              "customfield_10036": null,
+                              "customfield_10037": null,
+                              "customfield_10028": null,
+                              "customfield_10029": null,
+                              "resolutiondate": null,
+                              "workratio": -1,
+                              "lastViewed": "2021-05-28T13:29:08.222+1000",
+                              "watches": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-2/watchers",
+                                "watchCount": 1,
+                                "isWatching": true
+                              },
+                              "created": "2021-03-22T09:44:41.468+1100",
+                              "customfield_10020": null,
+                              "customfield_10021": null,
+                              "customfield_10022": null,
+                              "priority": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/priority/3",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/images/icons/priorities/medium.svg",
+                                "name": "Medium",
+                                "id": "3"
+                              },
+                              "customfield_10023": null,
+                              "customfield_10024": null,
+                              "customfield_10025": null,
+                              "labels": [],
+                              "customfield_10016": null,
+                              "customfield_10017": null,
+                              "customfield_10018": {
+                                "hasEpicLinkFieldDependency": false,
+                                "showField": false,
+                                "nonEditableReason": {
+                                  "reason": "PLUGIN_LICENSE_ERROR",
+                                  "message": "The Parent Link is only available to Jira Premium users."
+                                }
+                              },
+                              "customfield_10019": "0|i00007:",
+                              "timeestimate": null,
+                              "aggregatetimeoriginalestimate": null,
+                              "versions": [],
+                              "issuelinks": [],
+                              "assignee": null,
+                              "updated": "2021-03-22T09:44:41.468+1100",
+                              "status": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/status/10000",
+                                "description": "",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/",
+                                "name": "Backlog",
+                                "id": "10000",
+                                "statusCategory": {
+                                  "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/statuscategory/2",
+                                  "id": 2,
+                                  "key": "new",
+                                  "colorName": "blue-gray",
+                                  "name": "To Do"
+                                }
+                              },
+                              "components": [],
+                              "customfield_10050": null,
+                              "customfield_10051": null,
+                              "timeoriginalestimate": null,
+                              "customfield_10052": null,
+                              "customfield_10053": null,
+                              "description": {
+                                "version": 1,
+                                "type": "doc",
+                                "content": [
+                                  {
+                                    "type": "paragraph",
+                                    "content": [
+                                      {
+                                        "type": "text",
+                                        "text": "testing issues"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "customfield_10010": null,
+                              "customfield_10054": null,
+                              "customfield_10014": null,
+                              "customfield_10015": null,
+                              "customfield_10005": null,
+                              "customfield_10049": null,
+                              "customfield_10006": null,
+                              "customfield_10007": null,
+                              "security": null,
+                              "customfield_10008": null,
+                              "aggregatetimeestimate": null,
+                              "customfield_10009": null,
+                              "summary": "test issue to be creates",
+                              "creator": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "subtasks": [],
+                              "customfield_10040": null,
+                              "customfield_10041": null,
+                              "customfield_10042": null,
+                              "reporter": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "customfield_10043": null,
+                              "aggregateprogress": {
+                                "progress": 0,
+                                "total": 0
+                              },
+                              "customfield_10000": "{}",
+                              "customfield_10044": null,
+                              "customfield_10001": null,
+                              "customfield_10045": null,
+                              "customfield_10046": null,
+                              "customfield_10002": null,
+                              "customfield_10003": null,
+                              "customfield_10047": null,
+                              "customfield_10004": null,
+                              "customfield_10048": null,
+                              "customfield_10038": null,
+                              "customfield_10039": null,
+                              "environment": null,
+                              "duedate": null,
+                              "progress": {
+                                "progress": 0,
+                                "total": 0
+                              },
+                              "votes": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-2/votes",
+                                "votes": 0,
+                                "hasVoted": false
+                              }
+                            }
+                          },
+                          {
+                            "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+                            "id": "10000",
+                            "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/10000",
+                            "key": "STAC-1",
+                            "fields": {
+                              "statuscategorychangedate": "2021-03-22T09:36:23.216+1100",
+                              "issuetype": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issuetype/10001",
+                                "id": "10001",
+                                "description": "Functionality or a feature expressed as a user goal.",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+                                "name": "Story",
+                                "subtask": false,
+                                "avatarId": 10315,
+                                "hierarchyLevel": 0
+                              },
+                              "timespent": null,
+                              "customfield_10030": [],
+                              "project": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/project/10000",
+                                "id": "10000",
+                                "key": "STAC",
+                                "name": "StackGo",
+                                "projectTypeKey": "software",
+                                "simplified": false,
+                                "avatarUrls": {
+                                  "48x48": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?pid=10000&avatarId=10408",
+                                  "24x24": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10408",
+                                  "16x16": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10408",
+                                  "32x32": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10408"
+                                }
+                              },
+                              "customfield_10031": null,
+                              "customfield_10032": null,
+                              "fixVersions": [],
+                              "customfield_10033": null,
+                              "customfield_10034": null,
+                              "aggregatetimespent": null,
+                              "resolution": null,
+                              "customfield_10035": null,
+                              "customfield_10036": null,
+                              "customfield_10037": null,
+                              "customfield_10028": null,
+                              "customfield_10029": null,
+                              "resolutiondate": null,
+                              "workratio": -1,
+                              "watches": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-1/watchers",
+                                "watchCount": 1,
+                                "isWatching": true
+                              },
+                              "lastViewed": "2021-05-28T13:28:06.271+1000",
+                              "created": "2021-03-22T09:36:22.798+1100",
+                              "customfield_10020": null,
+                              "customfield_10021": null,
+                              "customfield_10022": null,
+                              "customfield_10023": null,
+                              "priority": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/priority/3",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/images/icons/priorities/medium.svg",
+                                "name": "Medium",
+                                "id": "3"
+                              },
+                              "customfield_10024": null,
+                              "customfield_10025": null,
+                              "labels": [
+                                "high"
+                              ],
+                              "customfield_10016": null,
+                              "customfield_10017": null,
+                              "customfield_10018": {
+                                "hasEpicLinkFieldDependency": false,
+                                "showField": false,
+                                "nonEditableReason": {
+                                  "reason": "PLUGIN_LICENSE_ERROR",
+                                  "message": "The Parent Link is only available to Jira Premium users."
+                                }
+                              },
+                              "customfield_10019": "0|hzzzzz:",
+                              "timeestimate": null,
+                              "aggregatetimeoriginalestimate": null,
+                              "versions": [],
+                              "issuelinks": [],
+                              "assignee": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "updated": "2021-03-22T09:36:22.798+1100",
+                              "status": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/status/10000",
+                                "description": "",
+                                "iconUrl": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/",
+                                "name": "Backlog",
+                                "id": "10000",
+                                "statusCategory": {
+                                  "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/statuscategory/2",
+                                  "id": 2,
+                                  "key": "new",
+                                  "colorName": "blue-gray",
+                                  "name": "To Do"
+                                }
+                              },
+                              "components": [],
+                              "customfield_10050": null,
+                              "timeoriginalestimate": null,
+                              "customfield_10051": null,
+                              "customfield_10052": null,
+                              "description": {
+                                "version": 1,
+                                "type": "doc",
+                                "content": [
+                                  {
+                                    "type": "paragraph",
+                                    "content": [
+                                      {
+                                        "type": "text",
+                                        "text": "This is a test for the api to pull up"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "customfield_10053": null,
+                              "customfield_10054": null,
+                              "customfield_10010": null,
+                              "customfield_10014": null,
+                              "customfield_10015": null,
+                              "customfield_10049": null,
+                              "customfield_10005": null,
+                              "customfield_10006": null,
+                              "security": null,
+                              "customfield_10007": null,
+                              "customfield_10008": null,
+                              "aggregatetimeestimate": null,
+                              "customfield_10009": null,
+                              "summary": "Test issues ",
+                              "creator": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "subtasks": [],
+                              "customfield_10040": null,
+                              "customfield_10041": null,
+                              "customfield_10042": null,
+                              "reporter": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/user?accountId=5b9f2f4e7ec0fb2e420b15dc",
+                                "accountId": "5b9f2f4e7ec0fb2e420b15dc",
+                                "emailAddress": "manish.p2077@gmail.com",
+                                "avatarUrls": {
+                                  "48x48": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "24x24": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "16x16": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png",
+                                  "32x32": "https://secure.gravatar.com/avatar/4430ab59afed5a2034f80846b2957511?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-5.png"
+                                },
+                                "displayName": "Manish Pahwa",
+                                "active": true,
+                                "timeZone": "Australia/Sydney",
+                                "accountType": "atlassian"
+                              },
+                              "customfield_10043": null,
+                              "aggregateprogress": {
+                                "progress": 0,
+                                "total": 0
+                              },
+                              "customfield_10000": "{}",
+                              "customfield_10044": null,
+                              "customfield_10001": null,
+                              "customfield_10045": null,
+                              "customfield_10002": null,
+                              "customfield_10046": null,
+                              "customfield_10047": null,
+                              "customfield_10003": null,
+                              "customfield_10004": null,
+                              "customfield_10048": null,
+                              "customfield_10038": null,
+                              "customfield_10039": null,
+                              "environment": null,
+                              "duedate": null,
+                              "progress": {
+                                "progress": 0,
+                                "total": 0
+                              },
+                              "votes": {
+                                "self": "https://api.atlassian.com/ex/jira/d87464e4-3a27-4698-8ef8-3ac3e7700035/rest/api/3/issue/STAC-1/votes",
+                                "votes": 0,
+                                "hasVoted": false
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "All results from the Service Now platform are transparently passed as the response. See examples."
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
+        ],
+        "tags": [
+          "Service Now"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "ServiceNowAppSlug",
+          "in": "path",
+          "required": true
         }
       ]
     },
