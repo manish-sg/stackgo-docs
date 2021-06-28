@@ -128,6 +128,111 @@
         }
       ]
     },
+    "/procore/auth/{appSlug}": {
+      "get": {
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Procore credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
+        "summary": "Atlassian Install Link",
+        "operationId": "AtlassianGetInstallLink",
+        "parameters": [
+          {
+            "name": "userForeignIdentifier",
+            "in": "query",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "m3@m.com"
+            },
+            "required": true,
+            "description": "Unique reference to a \"user\" in your application context. Can be a email address, UUID, Tenancy ID or similar"
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "description": "If true, it automatically redirects the caller to the SaaS platform. In this case Atlassian",
+            "name": "redirect"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {StackGo Token}",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response for contains a customised intallation link for the `userForeignIdentifier`. This response can be used in the `connected accounts` or the `integrations` page of your app inviting the users to authorise your application to access their tools.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "userForeignIdentifier": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "UUID": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "userForeignIdentifier",
+                    "UUID"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "url": "https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=G1kmfeIJWMzIblHLPNHShefGNgau2P47&scope=read%3Ajira-user%20read%3Ajira-work%20read%3Aconfluence-content.all%20read%3Aconfluence-content.summary%20manage%3Ajira-webhook%20manage%3Ajira-project%20offline_access&redirect_uri=https%3A%2F%2Fapi-dot-stackgo-300922.ts.r.appspot.com%2Fatlassian%2Fatl_dev-965a9683-a2bf-420b-9551-dcd3a62bb7b8%2Fcallback&state=stackgo-prod&response_type=code&prompt=consent",
+                      "userForeignIdentifier": "stackgo-prod",
+                      "UUID": "965a9683-a2bf-420b-9551-dcd3a62bb7b8"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
+        ],
+        "tags": [
+          "Procore"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "appSlug",
+          "in": "path",
+          "required": true,
+          "description": "SaaS platform identifier from StackGo"
+        }
+      ]
+    },
     "/atlassian/proxy/{AtlassianAppSlug}": {
       "post": {
         "description": "Use this endpoint for proxying calls to the Atlassian platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developer.atlassian.com` can be used in this way. ",
@@ -2301,6 +2406,489 @@
           "in": "path",
           "required": true,
           "description": "Pipedrive proxy calls"
+        }
+      ]
+    },
+    "/raw/{ProcoreAppSlug}": {
+      "post": {
+        "description": "Use this endpoint for proxying calls to the Pipedrive CRM using credentials referenced by the `ProcoreAppSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developers.procore.com` can be used in this way. ",
+        "summary": "Pipedrive proxy calls",
+        "operationId": "PipedriveproxycallsCopy",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "Bearer {StackGo Token}"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "See [here](https://docs.stackgo.io/docs/stackgo-docs/All-OpenApi3Json.json/paths/~1oauth~1token/post) on how to generate the StackGo tokens"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "type": "object",
+                "minProperties": 0,
+                "description": "",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "example": "GET",
+                    "description": "HTTP method like GET,POST etc.",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "PATCH",
+                      "DELETE",
+                      "HEAD",
+                      "OPTIONS"
+                    ]
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://stackgo.atlassian.net/wiki/rest/api/content/163843?expand=body.storage",
+                    "description": "The actual `url` endpoint you would like to access"
+                  },
+                  "userForeignIdentifier": {
+                    "type": "string",
+                    "example": "stackgo-prod",
+                    "description": "User reference"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "Optional. Provide the body of the request for 'POST` or `PUT` calls"
+                  },
+                  "headers": {
+                    "type": "string",
+                    "description": "Optional. To pass custom headers"
+                  }
+                },
+                "required": [
+                  "method",
+                  "url",
+                  "userForeignIdentifier"
+                ]
+              },
+              "examples": {
+                "Pipedrive call": {
+                  "value": {
+                    "method": "GET",
+                    "userForeignIdentifier": "ff29fea1-82fa-482d-bed2-226e4ad39f21",
+                    "url": "https://api.pipedrive.com/v1/persons?start=0"
+                  }
+                }
+              }
+            }
+          },
+          "required": false,
+          "description": "The request body is basically a structure to describe a HTTP call you would like to execute against the Procore platform.  "
+        },
+        "responses": {
+          "200": {
+            "description": "StackGo will check for tokens matching `userForeignIdentifier`, `appSlug` and then place a request to Atlassian. Any results or errors are transparently passed to the the API consumer. ",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "key": "value"
+                      }
+                    }
+                  },
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "Data recieved from the endpoint"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": {
+                        "success": true,
+                        "data": [
+                          {
+                            "id": 1,
+                            "company_id": 7863790,
+                            "owner_id": {
+                              "id": 12026854,
+                              "name": "Manish",
+                              "email": "manish@stackgo.io",
+                              "has_pic": 0,
+                              "pic_hash": null,
+                              "active_flag": true,
+                              "value": 12026854
+                            },
+                            "org_id": null,
+                            "name": "fdsfsd",
+                            "first_name": "fdsfsd",
+                            "last_name": null,
+                            "open_deals_count": 0,
+                            "related_open_deals_count": 0,
+                            "closed_deals_count": 0,
+                            "related_closed_deals_count": 0,
+                            "participant_open_deals_count": 0,
+                            "participant_closed_deals_count": 0,
+                            "email_messages_count": 0,
+                            "activities_count": 0,
+                            "done_activities_count": 0,
+                            "undone_activities_count": 0,
+                            "files_count": 0,
+                            "notes_count": 0,
+                            "followers_count": 1,
+                            "won_deals_count": 0,
+                            "related_won_deals_count": 0,
+                            "lost_deals_count": 0,
+                            "related_lost_deals_count": 0,
+                            "active_flag": true,
+                            "phone": [
+                              {
+                                "value": "",
+                                "primary": true
+                              }
+                            ],
+                            "email": [
+                              {
+                                "value": "",
+                                "primary": true
+                              }
+                            ],
+                            "first_char": "f",
+                            "update_time": "2021-02-27 08:46:46",
+                            "add_time": "2021-02-27 08:46:46",
+                            "visible_to": "3",
+                            "picture_id": null,
+                            "next_activity_date": null,
+                            "next_activity_time": null,
+                            "next_activity_id": null,
+                            "last_activity_id": null,
+                            "last_activity_date": null,
+                            "last_incoming_mail_time": null,
+                            "last_outgoing_mail_time": null,
+                            "label": null,
+                            "org_name": null,
+                            "owner_name": "Manish",
+                            "cc_email": "stackgo-sandbox2@pipedrivemail.com"
+                          },
+                          {
+                            "id": 2,
+                            "company_id": 7863790,
+                            "owner_id": {
+                              "id": 12026854,
+                              "name": "Manish",
+                              "email": "manish@stackgo.io",
+                              "has_pic": 0,
+                              "pic_hash": null,
+                              "active_flag": true,
+                              "value": 12026854
+                            },
+                            "org_id": null,
+                            "name": "testinf per",
+                            "first_name": "testinf",
+                            "last_name": "per",
+                            "open_deals_count": 0,
+                            "related_open_deals_count": 0,
+                            "closed_deals_count": 0,
+                            "related_closed_deals_count": 0,
+                            "participant_open_deals_count": 0,
+                            "participant_closed_deals_count": 0,
+                            "email_messages_count": 0,
+                            "activities_count": 0,
+                            "done_activities_count": 0,
+                            "undone_activities_count": 0,
+                            "files_count": 0,
+                            "notes_count": 0,
+                            "followers_count": 1,
+                            "won_deals_count": 0,
+                            "related_won_deals_count": 0,
+                            "lost_deals_count": 0,
+                            "related_lost_deals_count": 0,
+                            "active_flag": true,
+                            "phone": [
+                              {
+                                "value": "",
+                                "primary": true
+                              }
+                            ],
+                            "email": [
+                              {
+                                "value": "",
+                                "primary": true
+                              }
+                            ],
+                            "first_char": "t",
+                            "update_time": "2021-02-27 08:46:55",
+                            "add_time": "2021-02-27 08:46:55",
+                            "visible_to": "3",
+                            "picture_id": null,
+                            "next_activity_date": null,
+                            "next_activity_time": null,
+                            "next_activity_id": null,
+                            "last_activity_id": null,
+                            "last_activity_date": null,
+                            "last_incoming_mail_time": null,
+                            "last_outgoing_mail_time": null,
+                            "label": null,
+                            "org_name": null,
+                            "owner_name": "Manish",
+                            "cc_email": "stackgo-sandbox2@pipedrivemail.com"
+                          }
+                        ],
+                        "additional_data": {
+                          "pagination": {
+                            "start": 0,
+                            "limit": 100,
+                            "more_items_in_collection": false
+                          }
+                        },
+                        "related_objects": {
+                          "user": {
+                            "12026854": {
+                              "id": 12026854,
+                              "name": "Manish",
+                              "email": "manish@stackgo.io",
+                              "has_pic": 0,
+                              "pic_hash": null,
+                              "active_flag": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "key"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "key": "value"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example response": {
+                    "value": {
+                      "data": {
+                        "success": true,
+                        "data": [
+                          {
+                            "id": 1,
+                            "company_id": 7863790,
+                            "owner_id": {
+                              "id": 12026854,
+                              "name": "Manish",
+                              "email": "manish@stackgo.io",
+                              "has_pic": 0,
+                              "pic_hash": null,
+                              "active_flag": true,
+                              "value": 12026854
+                            },
+                            "org_id": null,
+                            "name": "fdsfsd",
+                            "first_name": "fdsfsd",
+                            "last_name": null,
+                            "open_deals_count": 0,
+                            "related_open_deals_count": 0,
+                            "closed_deals_count": 0,
+                            "related_closed_deals_count": 0,
+                            "participant_open_deals_count": 0,
+                            "participant_closed_deals_count": 0,
+                            "email_messages_count": 0,
+                            "activities_count": 0,
+                            "done_activities_count": 0,
+                            "undone_activities_count": 0,
+                            "files_count": 0,
+                            "notes_count": 0,
+                            "followers_count": 1,
+                            "won_deals_count": 0,
+                            "related_won_deals_count": 0,
+                            "lost_deals_count": 0,
+                            "related_lost_deals_count": 0,
+                            "active_flag": true,
+                            "phone": [
+                              {
+                                "value": "",
+                                "primary": true
+                              }
+                            ],
+                            "email": [
+                              {
+                                "value": "",
+                                "primary": true
+                              }
+                            ],
+                            "first_char": "f",
+                            "update_time": "2021-02-27 08:46:46",
+                            "add_time": "2021-02-27 08:46:46",
+                            "visible_to": "3",
+                            "picture_id": null,
+                            "next_activity_date": null,
+                            "next_activity_time": null,
+                            "next_activity_id": null,
+                            "last_activity_id": null,
+                            "last_activity_date": null,
+                            "last_incoming_mail_time": null,
+                            "last_outgoing_mail_time": null,
+                            "label": null,
+                            "org_name": null,
+                            "owner_name": "Manish",
+                            "cc_email": "stackgo-sandbox2@pipedrivemail.com"
+                          },
+                          {
+                            "id": 2,
+                            "company_id": 7863790,
+                            "owner_id": {
+                              "id": 12026854,
+                              "name": "Manish",
+                              "email": "manish@stackgo.io",
+                              "has_pic": 0,
+                              "pic_hash": null,
+                              "active_flag": true,
+                              "value": 12026854
+                            },
+                            "org_id": null,
+                            "name": "testinf per",
+                            "first_name": "testinf",
+                            "last_name": "per",
+                            "open_deals_count": 0,
+                            "related_open_deals_count": 0,
+                            "closed_deals_count": 0,
+                            "related_closed_deals_count": 0,
+                            "participant_open_deals_count": 0,
+                            "participant_closed_deals_count": 0,
+                            "email_messages_count": 0,
+                            "activities_count": 0,
+                            "done_activities_count": 0,
+                            "undone_activities_count": 0,
+                            "files_count": 0,
+                            "notes_count": 0,
+                            "followers_count": 1,
+                            "won_deals_count": 0,
+                            "related_won_deals_count": 0,
+                            "lost_deals_count": 0,
+                            "related_lost_deals_count": 0,
+                            "active_flag": true,
+                            "phone": [
+                              {
+                                "value": "",
+                                "primary": true
+                              }
+                            ],
+                            "email": [
+                              {
+                                "value": "",
+                                "primary": true
+                              }
+                            ],
+                            "first_char": "t",
+                            "update_time": "2021-02-27 08:46:55",
+                            "add_time": "2021-02-27 08:46:55",
+                            "visible_to": "3",
+                            "picture_id": null,
+                            "next_activity_date": null,
+                            "next_activity_time": null,
+                            "next_activity_id": null,
+                            "last_activity_id": null,
+                            "last_activity_date": null,
+                            "last_incoming_mail_time": null,
+                            "last_outgoing_mail_time": null,
+                            "label": null,
+                            "org_name": null,
+                            "owner_name": "Manish",
+                            "cc_email": "stackgo-sandbox2@pipedrivemail.com"
+                          }
+                        ],
+                        "additional_data": {
+                          "pagination": {
+                            "start": 0,
+                            "limit": 100,
+                            "more_items_in_collection": false
+                          }
+                        },
+                        "related_objects": {
+                          "user": {
+                            "12026854": {
+                              "id": 12026854,
+                              "name": "Manish",
+                              "email": "manish@stackgo.io",
+                              "has_pic": 0,
+                              "pic_hash": null,
+                              "active_flag": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "All results from the Pipedrive are transparently passed as the response. See examples."
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
+        ],
+        "tags": [
+          "Procore"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "ProcoreAppSlug",
+          "in": "path",
+          "required": true
         }
       ]
     },
