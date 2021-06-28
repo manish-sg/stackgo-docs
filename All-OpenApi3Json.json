@@ -131,7 +131,7 @@
     "/procore/auth/{appSlug}": {
       "get": {
         "description": "Use this endpoint to generate an `Authorisation Link` for a set of Procore credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
-        "summary": "Atlassian Install Link",
+        "summary": "Procore Install Link",
         "operationId": "AtlassianGetInstallLink",
         "parameters": [
           {
@@ -2412,7 +2412,7 @@
     "/raw/{ProcoreAppSlug}": {
       "post": {
         "description": "Use this endpoint for proxying calls to the Pipedrive CRM using credentials referenced by the `ProcoreAppSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developers.procore.com` can be used in this way. ",
-        "summary": "Pipedrive proxy calls",
+        "summary": "Procore proxy calls",
         "operationId": "PipedriveproxycallsCopy",
         "parameters": [
           {
