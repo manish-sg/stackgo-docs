@@ -3651,7 +3651,8 @@
           },
           "name": "ProcoreAppSlug",
           "in": "path",
-          "required": true
+          "required": true,
+          "description": "Procore App reference"
         }
       ]
     },
