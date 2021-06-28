@@ -132,7 +132,7 @@
       "get": {
         "description": "Use this endpoint to generate an `Authorisation Link` for a set of Procore credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
         "summary": "Procore Install Link",
-        "operationId": "AtlassianGetInstallLink",
+        "operationId": "ProcoreGetInstallLink",
         "parameters": [
           {
             "name": "userForeignIdentifier",
@@ -237,7 +237,7 @@
       "get": {
         "description": "Use this endpoint to generate an `Authorisation Link` for a set of Service Now credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
         "summary": "Service Now Install Link",
-        "operationId": "AtlassianGetInstallLink",
+        "operationId": "ServiceNowGetInstallLink",
         "parameters": [
           {
             "name": "userForeignIdentifier",
@@ -1101,11 +1101,11 @@
         }
       ]
     },
-    "/atlassian/proxy/{ServiceNowAppSlug}": {
+    "/servicenow/proxy/{ServiceNowAppSlug}": {
       "post": {
         "description": "Use this endpoint for proxying calls to the Service Now platform using credentials referenced by the `ServiceNowAppSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developer.servicenow.com/dev.do` can be used in this way. ",
         "summary": "Service Now proxy calls",
-        "operationId": "AtlassianproxycallsCopy",
+        "operationId": "ServiceNowProxycallsCopy",
         "parameters": [
           {
             "schema": {
@@ -3176,7 +3176,7 @@
       "post": {
         "description": "Use this endpoint for proxying calls to the Pipedrive CRM using credentials referenced by the `ProcoreAppSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developers.procore.com` can be used in this way. ",
         "summary": "Procore proxy calls",
-        "operationId": "PipedriveproxycallsCopy",
+        "operationId": "ProcoreProxycallsCopy",
         "parameters": [
           {
             "schema": {
@@ -13318,6 +13318,15 @@
     {
       "name": "StackGo",
       "description": "StackGo"
+    },
+    {
+      "name": "Procore",
+      "description": "Procore"
+    },
+    {
+      "name": "Service Now",
+      "description": "Service Name"
     }
+
   ]
 }
