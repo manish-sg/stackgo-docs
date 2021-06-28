@@ -996,6 +996,111 @@
         }
       ]
     },
+    "/hubspot/auth/{appSlug}": {
+      "get": {
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Hubspot credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
+        "tags": [
+          "Hubspot"
+        ],
+        "summary": "Hubspot Install Link",
+        "operationId": "HubspotGetInstallLink",
+        "parameters": [
+          {
+            "name": "userForeignIdentifier",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "test@test.com"
+            },
+            "description": "Unique reference to a \"user\" in your application context. Can be a email address, UUID, Tenancy ID or similar"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "Bearer {StackGo Token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response contains a customised intallation link for the `userForeignIdentifier`. This response can be used in the `connected accounts` or the `integrations page` of your app inviting the users to authorise your application to access their tools",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "userForeignIdentifier": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "UUID": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "userForeignIdentifier",
+                    "UUID"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "url": "https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=G1kmfeIJWMzIblHLPNHShefGNgau2P47&scope=read%3Ajira-user%20read%3Ajira-work%20read%3Aconfluence-content.all%20read%3Aconfluence-content.summary%20manage%3Ajira-webhook%20manage%3Ajira-project%20offline_access&redirect_uri=https%3A%2F%2Fapi-dot-stackgo-300922.ts.r.appspot.com%2Fatlassian%2Fatl_dev-965a9683-a2bf-420b-9551-dcd3a62bb7b8%2Fcallback&state=stackgo-prod&response_type=code&prompt=consent",
+                      "userForeignIdentifier": "stackgo-prod",
+                      "UUID": "965a9683-a2bf-420b-9551-dcd3a62bb7b8"
+                    }
+                  }
+                },
+                "examples": {
+                  "Hubspot Install Ex": {
+                    "value": {
+                      "url": "https://app.hubspot.com/oauth/authorize?client_id=6dc4b7ab-3ffd-4bcb-8046-7992dc102543&scope=contacts%20forms&redirect_uri=https%3A%2F%2Fapi-dot-stackgo-300922.ts.r.appspot.com%2Fhubspot%2Fhbdev-965a9683-a2bf-420b-9551-dcd3a62bb7b8%2Fcallback&state=test%40test.com",
+                      "userForeignIdentifier": "test@test.com",
+                      "UUID": "965a9683-a2bf-420b-9551-dcd3a62bb7b8"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "appSlug",
+          "in": "path",
+          "required": true,
+          "description": "Hubspot credentials identifier from StackGo"
+        }
+      ]
+    },
     "/atlassian/proxy/{ServiceNowAppSlug}": {
       "post": {
         "description": "Use this endpoint for proxying calls to the Service Now platform using credentials referenced by the `ServiceNowAppSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://developer.servicenow.com/dev.do` can be used in this way. ",
@@ -1650,111 +1755,6 @@
           "name": "ServiceNowAppSlug",
           "in": "path",
           "required": true
-        }
-      ]
-    },
-    "/hubspot/auth/{appSlug}": {
-      "get": {
-        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Hubspot credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
-        "tags": [
-          "Hubspot"
-        ],
-        "summary": "Hubspot Install Link",
-        "operationId": "HubspotGetInstallLink",
-        "parameters": [
-          {
-            "name": "userForeignIdentifier",
-            "in": "query",
-            "required": true,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "string",
-              "example": "test@test.com"
-            },
-            "description": "Unique reference to a \"user\" in your application context. Can be a email address, UUID, Tenancy ID or similar"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "description": "Bearer {StackGo Token}"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The response contains a customised intallation link for the `userForeignIdentifier`. This response can be used in the `connected accounts` or the `integrations page` of your app inviting the users to authorise your application to access their tools",
-            "headers": {},
-            "content": {
-              "application/json": {
-                "schema": {
-                  "description": "",
-                  "type": "object",
-                  "properties": {
-                    "url": {
-                      "type": "string",
-                      "minLength": 1
-                    },
-                    "userForeignIdentifier": {
-                      "type": "string",
-                      "minLength": 1
-                    },
-                    "UUID": {
-                      "type": "string",
-                      "minLength": 1
-                    }
-                  },
-                  "required": [
-                    "url",
-                    "userForeignIdentifier",
-                    "UUID"
-                  ],
-                  "x-examples": {
-                    "example-1": {
-                      "url": "https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=G1kmfeIJWMzIblHLPNHShefGNgau2P47&scope=read%3Ajira-user%20read%3Ajira-work%20read%3Aconfluence-content.all%20read%3Aconfluence-content.summary%20manage%3Ajira-webhook%20manage%3Ajira-project%20offline_access&redirect_uri=https%3A%2F%2Fapi-dot-stackgo-300922.ts.r.appspot.com%2Fatlassian%2Fatl_dev-965a9683-a2bf-420b-9551-dcd3a62bb7b8%2Fcallback&state=stackgo-prod&response_type=code&prompt=consent",
-                      "userForeignIdentifier": "stackgo-prod",
-                      "UUID": "965a9683-a2bf-420b-9551-dcd3a62bb7b8"
-                    }
-                  }
-                },
-                "examples": {
-                  "Hubspot Install Ex": {
-                    "value": {
-                      "url": "https://app.hubspot.com/oauth/authorize?client_id=6dc4b7ab-3ffd-4bcb-8046-7992dc102543&scope=contacts%20forms&redirect_uri=https%3A%2F%2Fapi-dot-stackgo-300922.ts.r.appspot.com%2Fhubspot%2Fhbdev-965a9683-a2bf-420b-9551-dcd3a62bb7b8%2Fcallback&state=test%40test.com",
-                      "userForeignIdentifier": "test@test.com",
-                      "UUID": "965a9683-a2bf-420b-9551-dcd3a62bb7b8"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "servers": [
-          {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
-            "variables": {}
-          }
-        ],
-        "security": [
-          {
-            "StackGo Client Credentials": []
-          }
-        ]
-      },
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "appSlug",
-          "in": "path",
-          "required": true,
-          "description": "Hubspot credentials identifier from StackGo"
         }
       ]
     },
