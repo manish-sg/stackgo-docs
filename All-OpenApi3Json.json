@@ -13485,7 +13485,7 @@
         }
       ],
       "delete": {
-        "summary": "",
+        "summary": "Delete SaaS Org User",
         "operationId": "delete-api-delete-user-:appSlug",
         "responses": {
           "200": {
