@@ -3732,9 +3732,6 @@
     "/api/saas-org-user/get-users/{appSlug}": {
       "get": {
         "description": "Use this endpoint to get a paginated list of Connected Accounts or `userForeignIdentiers` for a given `appSlug`",
-        "tags": [
-          "Shopify"
-        ],
         "summary": "Get connected accounts",
         "operationId": "GetConnectedAccounts",
         "parameters": [
@@ -3915,6 +3912,9 @@
           {
             "StackGo Client Credentials": []
           }
+        ],
+        "tags": [
+          "StackGo"
         ]
       },
       "parameters": [
