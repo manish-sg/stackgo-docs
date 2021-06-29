@@ -13472,6 +13472,82 @@
           "description": "Xero app reference"
         }
       ]
+    },
+    "/api/saas-org-user/delete-user/{:appSlug}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": ":appSlug",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "",
+        "operationId": "delete-api-delete-user-:appSlug",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "": {
+            "description": "Confirmation response that a 'userForeignIdentifier' has been deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "message": "userForeignIdentifier deleted",
+                      "userForeignIdentifier": "userForeignIdentifier",
+                      "appSlug": "appSlug"
+                    }
+                  },
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1,
+                      "default": "userForeignIdentiferDeleted"
+                    },
+                    "userForeignIdentifier": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "appSlug": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "userForeignIdentifier",
+                    "appSlug"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "description": "*Important*: This response will delete the connected account ##forever##. There are no ways to get the stored tokens and relevant `userForeignIdentifier` information. Please exercise caution when using this endpoint. ",
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {StackGo Token}",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "components": {
