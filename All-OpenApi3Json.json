@@ -3742,7 +3742,7 @@
             "explode": true,
             "schema": {
               "type": "string",
-              "example": "test-store-pp-sg"
+              "example": "1"
             },
             "description": "Default: 1 - results are paginated for performance reasons"
           },
