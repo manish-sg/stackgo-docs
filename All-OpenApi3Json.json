@@ -3729,7 +3729,7 @@
         }
       ]
     },
-    "/api/saas-org-user/get-users/{appSlug}": {
+    "/saas-org-user/get-users/{appSlug}": {
       "get": {
         "description": "Use this endpoint to get a paginated list of Connected Accounts or `userForeignIdentiers` for a given `appSlug`",
         "summary": "Get connected accounts",
@@ -13473,7 +13473,7 @@
         }
       ]
     },
-    "/api/saas-org-user/delete-user/{:appSlug}": {
+    "/saas-org-user/delete-user/{:appSlug}": {
       "parameters": [
         {
           "schema": {
