@@ -3729,6 +3729,206 @@
         }
       ]
     },
+    "/api/saas-org-user/get-users/{appSlug}": {
+      "get": {
+        "description": "Use this endpoint to get a paginated list of Connected Accounts or `userForeignIdentiers` for a given `appSlug`",
+        "tags": [
+          "Shopify"
+        ],
+        "summary": "Get connected accounts",
+        "operationId": "GetConnectedAccounts",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "test-store-pp-sg"
+            },
+            "description": "Default: 1 - results are paginated for performance reasons"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": "Bearer {StackGo Token}",
+            "name": "Authorization",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response is a list of `userForeignIdentifiers`",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "userForeignIdentifiers": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "id",
+                          "status",
+                          "createdAt",
+                          "updatedAt",
+                          "userForeignIdentifier"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "status": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "userForeignIdentifier": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "userForeignIdentifiers"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "userForeignIdentifiers": [
+                        {
+                          "id": 11,
+                          "status": "ACTIVE",
+                          "createdAt": "2021-03-28T00:49:49.170Z",
+                          "updatedAt": "2021-03-28T00:49:49.170Z",
+                          "userForeignIdentifier": "s2"
+                        },
+                        {
+                          "id": 12,
+                          "status": "ACTIVE",
+                          "createdAt": "2021-03-28T01:04:52.116Z",
+                          "updatedAt": "2021-03-28T01:04:52.116Z",
+                          "userForeignIdentifier": "test-store-pp-sg"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "": {
+            "description": "The response an object that returns the details of all `userForeignIdentifiers`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "userForeignIdentifiers": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "id",
+                          "status",
+                          "createdAt",
+                          "updatedAt",
+                          "userForeignIdentifier"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "status": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "userForeignIdentifier": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "userForeignIdentifiers"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "userForeignIdentifiers": [
+                        {
+                          "id": 11,
+                          "status": "ACTIVE",
+                          "createdAt": "2021-03-28T00:49:49.170Z",
+                          "updatedAt": "2021-03-28T00:49:49.170Z",
+                          "userForeignIdentifier": "s2"
+                        },
+                        {
+                          "id": 12,
+                          "status": "ACTIVE",
+                          "createdAt": "2021-03-28T01:04:52.116Z",
+                          "updatedAt": "2021-03-28T01:04:52.116Z",
+                          "userForeignIdentifier": "test-store-pp-sg"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "appSlug",
+          "in": "path",
+          "required": true,
+          "description": "Your App reference"
+        }
+      ]
+    },
     "/shopify/{ShopifyAppSlug}": {
       "post": {
         "description": "Use this endpoint for proxying calls to the Shopify platform using credentials referenced by the `appSlug` and against a end-user referenced by `userForeignIdentifier`. Any endpoints listed on  `https://shopify.dev/docs/` can be used in this way. ",
@@ -13327,6 +13527,5 @@
       "name": "Service Now",
       "description": "Service Name"
     }
-
   ]
 }
