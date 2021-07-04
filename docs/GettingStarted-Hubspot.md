@@ -4,8 +4,8 @@
 
 You never have to store credentials, change your database or understand how even the underlying auth system behaves!
 
-**Pre-requisites:** We assume that you have gone through the [StackGo Philosophy](docs/Docs Home.md) tutorials and have a StackGo account and the access credentials for API access
-
+**Pre-requisites:** We assume that you have gone through the [StackGo philosophy](https://docs.stackgo.io/docs/stackgo-docs/docs/Docs%20Home.md) tutorials and have a StackGo account and the access credentials for API access
+docs/Docs Home.md
 ## 1. Sign up for a developer account - [https://developers.hubspot.com](https://developers.hubspot.com/get-started)
 
 ### Choose `An App` and continue
