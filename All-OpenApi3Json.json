@@ -130,8 +130,8 @@
     },
     "/quick-books/auth/{appSlug}": {
       "get": {
-        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Atlassian credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
-        "summary": "Atlassian Install Link",
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Quick Books credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
+        "summary": "Quick Books Install Link",
         "operationId": "AtlassianGetInstallLink",
         "parameters": [
           {
