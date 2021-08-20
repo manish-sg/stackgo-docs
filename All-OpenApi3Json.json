@@ -128,6 +128,111 @@
         }
       ]
     },
+    "/quick-books/auth/{appSlug}": {
+      "get": {
+        "description": "Use this endpoint to generate an `Authorisation Link` for a set of Atlassian credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
+        "summary": "Atlassian Install Link",
+        "operationId": "AtlassianGetInstallLink",
+        "parameters": [
+          {
+            "name": "userForeignIdentifier",
+            "in": "query",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "m3@m.com"
+            },
+            "required": true,
+            "description": "Unique reference to a \"user\" in your application context. Can be a email address, UUID, Tenancy ID or similar"
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "description": "If true, it automatically redirects the caller to the SaaS platform. In this case Atlassian",
+            "name": "redirect"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {StackGo Token}",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response for contains a customised intallation link for the `userForeignIdentifier`. This response can be used in the `connected accounts` or the `integrations` page of your app inviting the users to authorise your application to access their tools.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "userForeignIdentifier": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "UUID": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "userForeignIdentifier",
+                    "UUID"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "url": "https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=G1kmfeIJWMzIblHLPNHShefGNgau2P47&scope=read%3Ajira-user%20read%3Ajira-work%20read%3Aconfluence-content.all%20read%3Aconfluence-content.summary%20manage%3Ajira-webhook%20manage%3Ajira-project%20offline_access&redirect_uri=https%3A%2F%2Fapi-dot-stackgo-300922.ts.r.appspot.com%2Fatlassian%2Fatl_dev-965a9683-a2bf-420b-9551-dcd3a62bb7b8%2Fcallback&state=stackgo-prod&response_type=code&prompt=consent",
+                      "userForeignIdentifier": "stackgo-prod",
+                      "UUID": "965a9683-a2bf-420b-9551-dcd3a62bb7b8"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "variables": {}
+          }
+        ],
+        "security": [
+          {
+            "StackGo Client Credentials": []
+          }
+        ],
+        "tags": [
+          "Quick Books"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "appSlug",
+          "in": "path",
+          "required": true,
+          "description": "SaaS platform identifier from StackGo"
+        }
+      ]
+    },
     "/procore/auth/{appSlug}": {
       "get": {
         "description": "Use this endpoint to generate an `Authorisation Link` for a set of Procore credentials registered on StackGo collectively referenced by the `appSlug` and a specific user referenced via `userForeignIdentifier`",
