@@ -2,6 +2,7 @@
 
 ### Open [StackGo] (https://app.stackgo.io/select-marketplace)
 
+<!-- focus: center -->
 ![ConfigureHubspotconnectorwithStackGo.png](../../assets/auth0/ConfigureHubspotconnectorwithStackGo.png)
 
 ### Pick a short nickname for your integration - hbdev` 
