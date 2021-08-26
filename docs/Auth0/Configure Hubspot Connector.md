@@ -2,7 +2,7 @@
 
 ### Open [StackGo] (`https://app.stackgo.io/select-marketplace`)
 
-![../../assets/images/hubspot_images/Untitled7.png](../assets/hubspot_images/Untitled7.png)
+![../../assets/images/hubspot_images/Untitled7.png](../../assets/hubspot_images/Untitled7.png)
 
 ### Pick a short nickname for your integration - hbdev` 
 
