@@ -1,8 +1,8 @@
 ## Configure Hubspot connector with StackGo
 
-### Open [StackGo] (`https://app.stackgo.io/select-marketplace`)
+### Open [StackGo] (https://app.stackgo.io/select-marketplace)
 
-![../../assets/images/hubspot_images/Untitled7.png](../../assets/hubspot_images/Untitled7.png)
+![ConfigureHubspotconnectorwithStackGo.png](../../assets/auth0/ConfigureHubspotconnectorwithStackGo.png)
 
 ### Pick a short nickname for your integration - hbdev` 
 
