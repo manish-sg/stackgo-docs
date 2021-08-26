@@ -1,6 +1,6 @@
 ## Configure Hubspot connector with StackGo
 
-### Open [StackGo] (https://app.stackgo.io/select-marketplace)
+### Open [StackGo](https://app.stackgo.io/select-marketplace)
 
 ![ConfigureHubspotconnectorwithStackGo.png](../../assets/auth0/ConfigureHubspotconnectorwithStackGo.png)
 
