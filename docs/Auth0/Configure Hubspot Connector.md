@@ -3,6 +3,7 @@
 ### Open [StackGo] (https://app.stackgo.io/select-marketplace)
 
 <!-- focus: center -->
+
 ![ConfigureHubspotconnectorwithStackGo.png](../../assets/auth0/ConfigureHubspotconnectorwithStackGo.png)
 
 ### Pick a short nickname for your integration - hbdev` 
@@ -12,3 +13,4 @@ Copy and paste the  hubspot app page, called `Client ID`, `Client Secret` and `A
 Select the same scopes as done on the Hubspot - or `contacts` and `forms` if you are following along 
 
 [Hubspot Fields](https://www.notion.so/61ccb7571be24e65a57a921c51e8d43c)
+
