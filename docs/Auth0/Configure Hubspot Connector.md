@@ -2,8 +2,6 @@
 
 ### Open [StackGo] (https://app.stackgo.io/select-marketplace)
 
-<!-- focus: center -->
-
 ![ConfigureHubspotconnectorwithStackGo.png](../../assets/auth0/ConfigureHubspotconnectorwithStackGo.png)
 
 ### Pick a short nickname for your integration - hbdev` 
@@ -14,5 +12,4 @@ Select the same scopes as done on the Hubspot - or `contacts` and `forms` if you
 
 [Hubspot Fields](https://www.notion.so/61ccb7571be24e65a57a921c51e8d43c)
 
-![Stoplight Logo](https://stoplight.io/images/home/logo-blue-black.png)
 
