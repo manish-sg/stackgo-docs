@@ -4747,7 +4747,7 @@
         }
       ]
     },
-    "/saas-org-user/get-user/{appSlug}?userForeignIdentifier=test@test.com": {
+    "/saas-org-user/get-user/{appSlug}": {
       "get": {
         "description": "Use this endpoint to check exisitence of a `userForeignIdentiers` for a given `appSlug` ",
         "summary": "Get connected accounts",
