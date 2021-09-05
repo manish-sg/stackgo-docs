@@ -4751,7 +4751,7 @@
       "get": {
         "description": "Use this endpoint to check exisitence of a `userForeignIdentier` for a given `appSlug` ",
         "summary": "Check `userForeignIdentifier`",
-        "operationId": "GetConnectedAccounts",
+        "operationId": "Check userForeignIdentifier",
         "parameters": [
           {
             "schema": {
