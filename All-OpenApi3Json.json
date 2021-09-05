@@ -4749,7 +4749,7 @@
     },
     "/saas-org-user/get-user/{appSlug}": {
       "get": {
-        "description": "Use this endpoint to check exisitence of a `userForeignIdentiers` for a given `appSlug` ",
+        "description": "Use this endpoint to check exisitence of a `userForeignIdentier` for a given `appSlug` ",
         "summary": "Check `userForeignIdentifier`",
         "operationId": "GetConnectedAccounts",
         "parameters": [
