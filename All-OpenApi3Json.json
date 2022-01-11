@@ -106,7 +106,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -216,7 +216,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -878,7 +878,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -982,7 +982,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -1087,7 +1087,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -1792,7 +1792,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -1897,7 +1897,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -2552,7 +2552,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -3382,7 +3382,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -3484,7 +3484,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -3965,7 +3965,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -4449,7 +4449,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -4525,7 +4525,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -4722,7 +4722,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -4887,7 +4887,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -13268,7 +13268,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -13454,7 +13454,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
@@ -14434,7 +14434,7 @@
         "deprecated": false,
         "servers": [
           {
-            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com",
+            "url": "https://api-dot-stackgo-300922.ts.r.appspot.com/api",
             "variables": {}
           }
         ],
